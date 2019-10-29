@@ -9,12 +9,12 @@ namespace CapaDatos
     public class Categoria : IEquatable<Categoria>
     {
         private int codCategoria { get; set; }
-        private string nombre { get; set; }
+        private string nombreCategoria { get; set; }
 
         public Categoria(int codCategoria, string nombre)
         {
             this.codCategoria = codCategoria;
-            this.nombre = nombre;
+            this.nombreCategoria = nombreCategoria;
         }
 
         public Categoria()
