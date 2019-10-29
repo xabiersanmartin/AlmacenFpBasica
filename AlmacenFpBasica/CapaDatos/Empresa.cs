@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    class Empresa : IEquatable<Empresa>
+   public class Empresa : IEquatable<Empresa>
     {
         private string nombre { get; set; }
         private string logo { get; set; }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    class Subcategoria
+   public class Subcategoria
     {
+        private int codSubCategoria { get; set; }
+        private string nombreSubCategoria { get; set; }
     }
 }

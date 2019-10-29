@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    class Adminstrador
+   public class Adminstrador
     {
         private string nombre { get; set; }
         private string password { get; set; }
