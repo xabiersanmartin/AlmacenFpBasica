@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SQLite;
 namespace CapaAcceso
 {
     public class Acceso
     {
+        private const string DBName = "almacen.bd";
+        private const string SQLScript = @"..\CapaPresentacion\bin\debug\almacen.bd";
+        private static bool IsDbRecentlyCreated = false;
+       
+        
         #region Funciones para el administrador
         //TODO CargarAdministrador
         //TODO ModificarPasswordAdministrador
@@ -40,6 +45,6 @@ namespace CapaAcceso
         #endregion
 
 
-
+      
     }
 }
