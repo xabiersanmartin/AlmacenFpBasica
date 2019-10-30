@@ -10,10 +10,11 @@ namespace ConsoleAppPruebas
     {
         static void Main(string[] args)
         {
+            string DBName = "almacen.bd";
+            string SQLScript = @"..\CapaPresentacion\bin\debug\almacen.bd";
+            bool IsDbRecentlyCreated = false;
 
-       string DBName = "almacen.bd";
-         string SQLScript = @"..\CapaPresentacion\bin\debug\almacen.bd";
-         bool IsDbRecentlyCreated = false;
+
 
     }
     }

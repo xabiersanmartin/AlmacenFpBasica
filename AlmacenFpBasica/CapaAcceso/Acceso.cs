@@ -55,7 +55,7 @@ namespace CapaAcceso
             return db;
         }
     }   
-    }
+
 
     #region Funciones para el administrador
     //TODO CargarAdministrador
@@ -87,8 +87,5 @@ namespace CapaAcceso
     //TODO AñadirProducto (Admin)
     //TODO EliminarProducto (Admin)
     #endregion
-
-
-
-}
+       
 }
