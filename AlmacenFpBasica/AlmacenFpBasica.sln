@@ -11,11 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaGestion", "CapaGestion\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaAcceso", "CapaAcceso\CapaAcceso.csproj", "{D4667A5B-3CE7-46DA-BA9A-7464E56F71E9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base  de Datos", "Base  de Datos", "{5D7F1ED2-20E2-4527-B326-750AE5F5DEA3}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\almacen.db = ..\..\..\almacen.db
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
