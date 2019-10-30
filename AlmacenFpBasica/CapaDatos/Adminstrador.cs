@@ -8,8 +8,8 @@ namespace CapaDatos
 {
    public class Adminstrador
     {
-        private string nombre { get; set; }
-        private string password { get; set; }
+        public string nombre { get; set; }
+        public string password { get; set; }
 
 
         public Adminstrador(string nombre, string password)
