@@ -71,7 +71,7 @@ namespace CapaAcceso
         /// Funcion que devuelve el administrador
         /// </summary>
         /// <param name="msg"></param>
-        /// <returns></returns>
+        /// <returns>Retorna el administrador, o null en su defecto</returns>
         public Adminstrador DevolverAdmin(out string msg)
         {
             msg = "";
@@ -104,7 +104,11 @@ namespace CapaAcceso
             return null;
 
         }
-        //TODO ModificarPasswordAdministrador
+        /// <summary>
+        /// Funcion que mdifica la contraseña del administrador
+        /// </summary>
+        /// <param name="nuevoNombre"></param>
+        /// <returns>Retorna "", o un mensaje de error en su defecto</returns>
         public String ModificarPassAdmin(string nuevoNombre)
         {
             try
