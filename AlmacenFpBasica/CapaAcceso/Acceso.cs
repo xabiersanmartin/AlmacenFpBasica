@@ -65,8 +65,13 @@ namespace CapaAcceso
             return db;
         }
 
+
         #region Funciones para el administrador
-        //TODO CargarAdministrador
+        /// <summary>
+        /// Funcion que devuelve el administrador
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public Adminstrador DevolverAdmin(out string msg)
         {
             msg = "";
@@ -88,7 +93,7 @@ namespace CapaAcceso
                         }
 
                     }
-
+                    con.Close();
                 }
             }
             catch (Exception e)
@@ -100,8 +105,25 @@ namespace CapaAcceso
 
         }
         //TODO ModificarPasswordAdministrador
-        public String ModificarPassAdmin()
+        public String ModificarPassAdmin(string nuevoNombre)
         {
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "UPDATE administrador Set administrador.Password @Password";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@nombre",nuevoNombre);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+
+            }
             return "";
         }
         #endregion
