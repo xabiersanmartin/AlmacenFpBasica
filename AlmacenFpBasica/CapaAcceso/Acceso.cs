@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using CapaDatos;
 
 namespace CapaAcceso
 {
@@ -66,6 +67,38 @@ namespace CapaAcceso
 
         #region Funciones para el administrador
         //TODO CargarAdministrador
+        public Adminstrador DevolverAdmin(out string msg)
+        {
+            msg = "";
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM ADMINISTRADOR";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    using (SQLiteDataReader dradmin = cmd.ExecuteReader())
+                    {
+                        while (dradmin.Read())
+                        {
+                            Adminstrador newAdmin = new Adminstrador();
+                            newAdmin.nombre = dradmin["Nombre"].ToString();
+                            newAdmin.password = dradmin["Password"].ToString();
+                            return newAdmin;
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+
+            }
+            return null;
+
+        }
         //TODO ModificarPasswordAdministrador
         public String ModificarPassAdmin()
         {
