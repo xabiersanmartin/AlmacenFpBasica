@@ -102,6 +102,10 @@ namespace CapaAcceso
 
         }
         //TODO ModificarPasswordAdministrador
+        public String ModificarPassAdmin()
+        {
+            return "";
+        }
         #endregion
 
         #region Funciones para la empresa
