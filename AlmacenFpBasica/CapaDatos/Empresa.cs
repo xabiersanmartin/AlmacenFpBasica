@@ -8,8 +8,8 @@ namespace CapaDatos
 {
    public class Empresa : IEquatable<Empresa>
     {
-        private string nombre { get; set; }
-        private string logo { get; set; }
+        public string nombre { get; set; }
+        public string logo { get; set; }
 
         public Empresa(string nombre, string logo)
         {

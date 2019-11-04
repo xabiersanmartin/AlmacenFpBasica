@@ -8,11 +8,11 @@ namespace CapaDatos
 {
     public class Producto
     {
-        private int codigoProducto { get; set; }
-        private string descripcion { get; set; }
-        private string talla { get; set; }
-        private int stock { get; set; }
-        private decimal precio { get; set; }
+        public int codigoProducto { get; set; }
+        public string descripcion { get; set; }
+        public string talla { get; set; }
+        public int stock { get; set; }
+        public decimal precio { get; set; }
 
         public Producto()
         {

@@ -8,8 +8,8 @@ namespace CapaDatos
 {
    public class Subcategoria : IEquatable<Subcategoria>
     {
-        private int codSubCategoria { get; set; }
-        private string nombreSubCategoria { get; set; }
+        public int codSubCategoria { get; set; }
+        public string nombreSubCategoria { get; set; }
 
         public Subcategoria(int codSubCategoria, string nombreSubCategoria)
         {
