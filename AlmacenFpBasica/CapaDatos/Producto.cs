@@ -10,25 +10,22 @@ namespace CapaDatos
     {
         public int codigoProducto { get; set; }
         public string descripcion { get; set; }
-        public string talla { get; set; }
         public int stock { get; set; }
         public decimal precio { get; set; }
 
         public Producto()
         {
         }
-        public Producto(string descripcion, string talla, int stock, decimal precio)
+        public Producto(string descripcion, int stock, decimal precio)
         {
             this.descripcion = descripcion;
-            this.talla = talla;
             this.stock = stock;
             this.precio = precio;
         }
-        public Producto(int codigoProducto, string descripcion, string talla, int stock, decimal precio)
+        public Producto(int codigoProducto, string descripcion, int stock, decimal precio)
         {
             this.codigoProducto = codigoProducto;
             this.descripcion = descripcion;
-            this.talla = talla;
             this.stock = stock;
             this.precio = precio;
         }
