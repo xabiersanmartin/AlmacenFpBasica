@@ -9,7 +9,6 @@ namespace CapaDatos
    public class TiposMedidas
     {
         public string Medidas { get; set; }
-
         public TiposMedidas(string medidas)
         {
             Medidas = medidas;

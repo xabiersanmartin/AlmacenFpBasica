@@ -72,9 +72,11 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="msg"></param>
         /// <returns>Retorna el administrador, o null en su defecto</returns>
-        public Adminstrador DevolverAdmin(out string msg)
+        public bool IniciarSesion(Adminstrador admin, out string msg)
         {
             msg = "";
+            bool exito = false;
+            Adminstrador newAdmin = new Adminstrador();
             try
             {
                 using (var con = GetInstance())
@@ -86,14 +88,23 @@ namespace CapaAcceso
                     {
                         while (dradmin.Read())
                         {
-                            Adminstrador newAdmin = new Adminstrador();
+                            
                             newAdmin.nombre = dradmin["Nombre"].ToString();
                             newAdmin.password = dradmin["Password"].ToString();
-                            return newAdmin;
+                            
                         }
 
                     }
                     con.Close();
+                }
+                if (newAdmin.Equals(admin))
+                {
+                    msg = "Se ha iniciado sesión correctamente";
+                    exito= true;
+                }
+                else {
+                    msg = "El nombre de administrador o contraseña son incorrectos";
+                    exito= false;
                 }
             }
             catch (Exception e)
@@ -101,8 +112,7 @@ namespace CapaAcceso
                 msg = e.Message;
 
             }
-            return null;
-
+            return exito;
         }
         /// <summary>
         /// Funcion que mdifica la contraseña del administrador
