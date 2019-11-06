@@ -10,7 +10,6 @@ namespace CapaDatos
     {
         public enum TiposProducto { solido, liquido, ropa }
         public TiposProducto TipoProducto { get; set; }
-
         public Tipo(TiposProducto tipoProducto)
         {
             TipoProducto = tipoProducto;

@@ -8,21 +8,11 @@ namespace CapaDatos
 {
    public class TiposMedidas
     {
-        
-        public string Kilos { get; set; }
-        public string Litros { get; set; }
-        public enum Tallas { grande,mediana,pequeña}
-        public Tallas Talla { get; set; }
+        public string Medidas { get; set; }
 
-        public TiposMedidas(string litros)
+        public TiposMedidas(string medidas)
         {
-            Litros = litros;
+            Medidas = medidas;
         }
-
-        public TiposMedidas(Tallas talla)
-        {
-            Talla = talla;
-        }
-
     }
 }
