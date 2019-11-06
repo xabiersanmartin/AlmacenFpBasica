@@ -16,5 +16,10 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void grbAdmin_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
