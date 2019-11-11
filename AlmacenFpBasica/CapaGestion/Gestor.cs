@@ -16,8 +16,7 @@ namespace CapaGestion
 
         public bool IniciarSesion(Adminstrador admin, out string mensaje)
         {
-
-            return nuevoacces;
+            return nuevoacces.IniciarSesion(admin, out mensaje);
         }
     }
 }

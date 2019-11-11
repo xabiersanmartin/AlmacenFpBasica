@@ -86,7 +86,7 @@ namespace CapaAcceso
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     using (SQLiteDataReader dradmin = cmd.ExecuteReader())
                     {
-                        while (dradmin.Read())
+                        while (dradmin.Read()) // CAMBIAR A IF, PORQUE SOLO ES UN CAMPO
                         {
                             
                             newAdmin.nombre = dradmin["Nombre"].ToString();
