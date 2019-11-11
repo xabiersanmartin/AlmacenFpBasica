@@ -115,7 +115,7 @@ namespace CapaAcceso
             return exito;
         }
         /// <summary>
-        /// Funcion que mdifica la contraseña del administrador
+        /// Funcion que mdifica la contraseña del administradorr
         /// </summary>
         /// <param name="nuevoNombre"></param>
         /// <returns>Retorna "", o un mensaje de error en su defecto</returns>
