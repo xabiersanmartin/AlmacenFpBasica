@@ -66,7 +66,7 @@ namespace CapaAcceso
         }
 
 
-        #region Funciones para el administrador
+        #region Funciones para el administradorr
         /// <summary>
         /// Funcion que devuelve el administrador
         /// </summary>
