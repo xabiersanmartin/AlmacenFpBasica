@@ -44,5 +44,10 @@ namespace CapaPresentacion
             txtUsuario.Text = "";
             txtContrasena.Text = "";
         }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

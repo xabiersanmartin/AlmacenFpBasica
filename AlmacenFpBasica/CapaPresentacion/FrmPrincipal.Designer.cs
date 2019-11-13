@@ -47,9 +47,9 @@
             this.grbAdmin.Controls.Add(this.txtUser);
             this.grbAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbAdmin.Location = new System.Drawing.Point(1259, 101);
-            this.grbAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.grbAdmin.Name = "grbAdmin";
-            this.grbAdmin.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbAdmin.Padding = new System.Windows.Forms.Padding(4);
             this.grbAdmin.Size = new System.Drawing.Size(353, 303);
             this.grbAdmin.TabIndex = 0;
             this.grbAdmin.TabStop = false;
@@ -59,7 +59,7 @@
             // btnAcceder
             // 
             this.btnAcceder.Location = new System.Drawing.Point(101, 224);
-            this.btnAcceder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAcceder.Margin = new System.Windows.Forms.Padding(4);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.Size = new System.Drawing.Size(137, 41);
             this.btnAcceder.TabIndex = 4;
@@ -81,7 +81,7 @@
             // txtContrasena
             // 
             this.txtContrasena.Location = new System.Drawing.Point(45, 164);
-            this.txtContrasena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContrasena.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena.Name = "txtContrasena";
             this.txtContrasena.Size = new System.Drawing.Size(169, 28);
             this.txtContrasena.TabIndex = 2;
@@ -100,7 +100,7 @@
             // txtUser
             // 
             this.txtUser.Location = new System.Drawing.Point(45, 73);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(169, 28);
             this.txtUser.TabIndex = 0;
@@ -111,7 +111,7 @@
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSalir.Location = new System.Drawing.Point(1415, 484);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(197, 79);
             this.btnSalir.TabIndex = 1;
@@ -125,9 +125,10 @@
             this.ClientSize = new System.Drawing.Size(1647, 748);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.grbAdmin);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipal";
             this.Text = "Formulario principal";
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.grbAdmin.ResumeLayout(false);
             this.grbAdmin.PerformLayout();
             this.ResumeLayout(false);

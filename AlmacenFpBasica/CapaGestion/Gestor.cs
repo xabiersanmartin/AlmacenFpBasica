@@ -18,6 +18,10 @@ namespace CapaGestion
         {
             return nuevoacces.IniciarSesion(admin, out mensaje);
         }
+        public string ModificarPassAdmin(string nuevaPass)
+        {
+            return nuevoacces.ModificarPassAdmin(nuevaPass);
+        }
         public List<Tipo> CargarTipos(out string mensaje)
         {
             return nuevoacces.CargarTipos(out mensaje);
