@@ -185,7 +185,47 @@ namespace CapaAcceso
         #endregion
 
         #region Funciones para las categorias
-        //TODO CargarCategorias
+        /// <summary>
+        /// Funcion que Carga las Categorias
+        /// </summary>
+        /// <param name="msg">Mensaje que retorna "" si todo ha ido bien, o un error en su defecto</param>
+        /// <returns>Retorna una lista con las categorias, o null en su defecto</returns>
+        public List<Categoria> CargarCategorias(out string msg)
+        {
+            msg = "";
+            List<Categoria> categorias = new List<Categoria>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM categoria";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    using (SQLiteDataReader drcategoria = cmd.ExecuteReader())
+                    {
+                        if (!drcategoria.HasRows)
+                        {
+                            msg = "No hay Categorias";
+                            con.Close();
+                            return categorias;
+                        }
+                        while (drcategoria.Read())
+                        {
+                            Categoria categoria = new Categoria();
+                            categoria.codCategoria = int.Parse(drcategoria["CodigoCategoria"].ToString());
+                            categoria.codCategoria = int.Parse(drcategoria["NombreCategoria"].ToString());
+                            categorias.Add(categoria);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return categorias;
+        }
         //TODO AñadirCategoria (Admin)
         //TODO ModificarCategoria (Admin)
         //TODO EliminarCategoria (Admin)
@@ -199,7 +239,49 @@ namespace CapaAcceso
         #endregion
 
         #region Funciones para los productos
-        //TODO CargarProductos
+        /// <summary>
+        /// Funcion que Carga los Productos
+        /// </summary>
+        /// <param name="msg">Mensaje que retorna "" si todo ha ido bien, o un error en su defecto</param>
+        /// <returns>Retorna una lista con los Productos, o null en su defecto</returns>
+        public List<Producto> CargarProductos(out string msg)
+        {
+            msg = "";
+            List<Producto> productos = new List<Producto>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM productos";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    using (SQLiteDataReader lector = cmd.ExecuteReader())
+                    {
+                        if (!lector.HasRows)
+                        {
+                            msg = "No hay Productos";
+                            con.Close();
+                            return productos;
+                        }
+                        while (lector.Read())
+                        {
+                            Producto producto = new Producto();
+                            producto.codigoProducto = int.Parse(lector["CodigoProducto"].ToString());
+                            producto.descripcion = lector["Descripion"].ToString();
+                            producto.precio = int.Parse(lector["Precio"].ToString());
+                            producto.stock = int.Parse(lector["Stock"].ToString());
+                            productos.Add(producto);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return productos;
+        }
         //TODO ModificarProducto
         //TODO AñadirProducto (Admin)
         //TODO EliminarProducto (Admin)
