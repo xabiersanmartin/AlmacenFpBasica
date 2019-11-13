@@ -86,7 +86,7 @@ namespace CapaAcceso
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     using (SQLiteDataReader dradmin = cmd.ExecuteReader())
                     {
-                        while (dradmin.Read())
+                        while (dradmin.Read()) // CAMBIAR A IF, PORQUE SOLO ES UN CAMPO
                         {
                             
                             newAdmin.nombre = dradmin["Nombre"].ToString();
@@ -117,9 +117,9 @@ namespace CapaAcceso
         /// <summary>
         /// Funcion que mdifica la contraseña del administradorr
         /// </summary>
-        /// <param name="nuevoNombre"></param>
+        /// <param name="nuevaPass"></param>
         /// <returns>Retorna "", o un mensaje de error en su defecto</returns>
-        public String ModificarPassAdmin(string nuevoNombre)
+        public String ModificarPassAdmin(string nuevaPass)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace CapaAcceso
 
                     var query = "UPDATE administrador Set administrador.Password @Password";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@nombre",nuevoNombre);
+                    cmd.Parameters.AddWithValue("@Password",nuevaPass);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -142,9 +142,46 @@ namespace CapaAcceso
         }
         #endregion
 
-        #region Funciones para la empresa
-        //TODO CargarEmpresa
-        //TODO ModificarEmpresa
+        #region Funciones para los tipos
+        /// <summary>
+        /// Funcion que Carga los tipos
+        /// </summary>
+        /// <param name="msg">Mensaje que retorna "" si todo ha ido bien, o un error en su defecto</param>
+        /// <returns>Retorna una lista con los tipos, o null en su defecto</returns>
+        public List<Tipo> CargarTipos(out string msg)
+        {
+            msg = "";
+            List<Tipo> tipos = new List<Tipo>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM TIPO";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    using (SQLiteDataReader drtipo = cmd.ExecuteReader())
+                    {
+                        if (!drtipo.HasRows)
+                        {
+                            msg = "No hay Tipos";
+                            return tipos;
+                        }
+                        while (drtipo.Read())
+                        {
+                            Tipo tipo = new Tipo();
+                            tipo.TipoProducto = (Tipo.TiposProducto)drtipo["Tipo"];
+                            tipos.Add(tipo);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return tipos;
+        }
         #endregion
 
         #region Funciones para las categorias
@@ -166,6 +203,11 @@ namespace CapaAcceso
         //TODO ModificarProducto
         //TODO AñadirProducto (Admin)
         //TODO EliminarProducto (Admin)
+        #endregion
+
+        #region Funciones para la empresa
+        //TODO CargarEmpresa
+        //TODO ModificarEmpresa
         #endregion
 
     }

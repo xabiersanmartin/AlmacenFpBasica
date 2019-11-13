@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    class Tipo
+    public class Tipo
     {
         public enum TiposProducto { solido, liquido, ropa }
         public TiposProducto TipoProducto { get; set; }
+        public Tipo()
+        {
+        }
         public Tipo(TiposProducto tipoProducto)
         {
             TipoProducto = tipoProducto;
