@@ -1,5 +1,4 @@
-﻿using CapaDatos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -28,7 +28,7 @@ namespace CapaPresentacion
         {
             if (txtUsuario.Text == "" || txtContrasena.Text == "")
             {
-                MessageBox.Show("No deje ningún campo vacío por favor");
+                MessageBox.Show("No deje ningún campo vacío por favorr");
                 return;
 
             }
