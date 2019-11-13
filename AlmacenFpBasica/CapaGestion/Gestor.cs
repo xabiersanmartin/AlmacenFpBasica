@@ -18,5 +18,9 @@ namespace CapaGestion
         {
             return nuevoacces.IniciarSesion(admin, out mensaje);
         }
+        public List<Tipo> CargarTipos(out string mensaje)
+        {
+            return nuevoacces.CargarTipos(out mensaje);
+        }
     }
 }
