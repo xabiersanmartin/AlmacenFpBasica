@@ -28,5 +28,10 @@ namespace CapaPresentacion
             mensaje = Program.Gestor.ModificarPassAdmin(txtPass.Text);
             MessageBox.Show(mensaje);
         }
+
+        private void FrmAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

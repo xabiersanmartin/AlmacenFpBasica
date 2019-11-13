@@ -30,8 +30,8 @@
         {
             this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,13 +58,6 @@
             this.groupBox1.Text = "Cambiar Contraseña";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(163, 99);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(141, 22);
-            this.txtPass.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -74,6 +67,13 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Nueva contraseña";
             // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(163, 99);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(141, 22);
+            this.txtPass.TabIndex = 1;
+            // 
             // FrmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -82,6 +82,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmAdmin";
             this.Text = "FrmAdmin";
+            this.Load += new System.EventHandler(this.FrmAdmin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
