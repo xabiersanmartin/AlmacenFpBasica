@@ -22,6 +22,7 @@ namespace CapaGestion
         {
             return nuevoacces.ModificarPassAdmin(nuevaPass);
         }
+
         public List<Tipo> CargarTipos(out string mensaje)
         {
             return nuevoacces.CargarTipos(out mensaje);
