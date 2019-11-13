@@ -232,7 +232,48 @@ namespace CapaAcceso
         #endregion
 
         #region Funciones para las subcategorias
-        //TODO CargarSubCategorias
+
+        public List<Subcategoria> CargarSubcategoria(out string msg)
+        {
+            List<Subcategoria> subcategorias = new List<Subcategoria>();
+
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    string SelectSubcategoria = "SELECT * FROM subcategoria;";
+                    SQLiteCommand cmd = new SQLiteCommand(SelectSubcategoria, con);
+                    SQLiteDataReader lector = cmd.ExecuteReader();
+
+                    if (!lector.HasRows)
+                    {
+                        msg = "No hay Subcategorias";
+                        con.Close();
+                        return subcategorias;
+                    }
+
+                    while (lector.Read())
+                    {
+                        Subcategoria newSubcategoria = new Subcategoria();
+                        newSubcategoria.codSubCategoria = int.Parse(lector["CodigoSubcategoria"].ToString());
+                        newSubcategoria.nombreSubCategoria = lector["NombreSubcategoria"].ToString();
+
+                        subcategorias.Add(newSubcategoria);
+                    }
+
+                    con.Close();
+                    lector.Close();
+                    msg = "";
+                    return subcategorias;
+                }
+            }
+            catch (Exception)
+            {
+                msg = "Error al cargar las Subcategorias ";
+                return subcategorias;
+            }
+        }
+
         //TODO AñadirSubCategoria (Admin)
         //TODO ModificarSubCategoria (Admin)
         //TODO EliminarSubCategoria (Admin)
