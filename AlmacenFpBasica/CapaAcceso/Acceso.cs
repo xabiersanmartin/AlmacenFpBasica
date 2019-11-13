@@ -117,9 +117,9 @@ namespace CapaAcceso
         /// <summary>
         /// Funcion que mdifica la contraseña del administradorr
         /// </summary>
-        /// <param name="nuevoNombre"></param>
+        /// <param name="nuevaPass"></param>
         /// <returns>Retorna "", o un mensaje de error en su defecto</returns>
-        public String ModificarPassAdmin(string nuevoNombre)
+        public String ModificarPassAdmin(string nuevaPass)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace CapaAcceso
 
                     var query = "UPDATE administrador Set administrador.Password @Password";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@nombre",nuevoNombre);
+                    cmd.Parameters.AddWithValue("@Password",nuevaPass);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
