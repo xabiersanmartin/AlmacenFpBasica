@@ -26,13 +26,13 @@ namespace CapaPresentacion
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "" || txtContrasena.Text == "")
+            if (txtUser.Text == "" || txtContrasena.Text == "")
             {
                 MessageBox.Show("No deje ningún campo vacío por favorr");
                 return;
 
             }
-            Adminstrador admin = new Adminstrador(txtUsuario.Text, txtContrasena.Text);
+            Adminstrador admin = new Adminstrador(txtUser.Text, txtContrasena.Text);
             bool respuesta = Program.Gestor.IniciarSesion(admin, out mensaje);
             MessageBox.Show(mensaje);
             if (respuesta==true)
@@ -40,8 +40,8 @@ namespace CapaPresentacion
                 FrmAdmin frmabrir = new FrmAdmin();
                 frmabrir.Show();
             }
-            
-            txtUsuario.Text = "";
+
+            txtUser.Text = "";
             txtContrasena.Text = "";
         }
 
