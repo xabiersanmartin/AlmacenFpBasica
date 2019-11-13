@@ -6,6 +6,10 @@
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
+-- Database: almacen
+CREATE DATABASE almacen;
+USE almacen;
+
 -- Table: administrador
 DROP TABLE IF EXISTS administrador;
 CREATE TABLE administrador (Nombre TEXT (255) NOT NULL, Password TEXT (255) NOT NULL);

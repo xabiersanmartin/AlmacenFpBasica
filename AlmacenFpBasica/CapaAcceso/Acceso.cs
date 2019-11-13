@@ -65,7 +65,6 @@ namespace CapaAcceso
             return db;
         }
 
-
         #region Funciones para el administradorr
         /// <summary>
         /// Funcion que devuelve el administrador
