@@ -65,7 +65,7 @@ namespace CapaAcceso
             return db;
         }
 
-        #region Funciones para el administradorr
+        #region Funciones para el administrador
         /// <summary>
         /// Funcion que devuelve el administrador
         /// </summary>
@@ -85,7 +85,7 @@ namespace CapaAcceso
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     using (SQLiteDataReader dradmin = cmd.ExecuteReader())
                     {
-                        while (dradmin.Read()) // CAMBIAR A IF, PORQUE SOLO ES UN CAMPO
+                        if (dradmin.Read()) // ES UN IF, PORQUE SOLO ES UN CAMPO
                         {
                             
                             newAdmin.nombre = dradmin["Nombre"].ToString();
