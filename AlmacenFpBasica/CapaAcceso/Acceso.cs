@@ -12,7 +12,7 @@ namespace CapaAcceso
     public class Acceso
     {
         #region Propiedades para la conexion de la base de datos
-        private const string DBName = "almacen.bd";
+        private const string DBName = "almacen.db";
         private const string SQLScript = @"..\script.sql";
         private static bool IsDbRecentlyCreated = false;
         #endregion
