@@ -189,7 +189,7 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="msg">Mensaje que retorna "" si todo ha ido bien, o un error en su defecto</param>
         /// <returns>Retorna una lista con las categorias, o null en su defecto</returns>
-        public List<Categoria> CargarCategorias(out string msg)
+        public List<Categoria> CargarCategorias( out string msg)
         {
             msg = "";
             List<Categoria> categorias = new List<Categoria>();
@@ -226,6 +226,44 @@ namespace CapaAcceso
             return categorias;
         }
         //TODO AñadirCategoria (Admin)
+        public List<Categoria> AñadirCategoria(string codCategoria, out string msg)
+        {
+            msg = "";
+            List<Categoria> categorias = new List<Categoria>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT Categoria * FROM categoria where codigoCategoria = @cod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@cod", codCategoria);
+                    //TODO continuar haciendo la funcion
+                    using (SQLiteDataReader drcategoria = cmd.ExecuteReader())
+                    {
+                        if (!drcategoria.HasRows)
+                        {
+                            msg = "No hay Categorias";
+                            con.Close();
+                            return categorias;
+                        }
+                        while (drcategoria.Read())
+                        {
+                            Categoria categoria = new Categoria();
+                            categoria.codCategoria = int.Parse(drcategoria["CodigoCategoria"].ToString());
+                            categoria.codCategoria = int.Parse(drcategoria["NombreCategoria"].ToString());
+                            categorias.Add(categoria);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return categorias;
+        }
         //TODO ModificarCategoria (Admin)
         //TODO EliminarCategoria (Admin)
         #endregion
