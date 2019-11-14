@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-   public class Adminstrador
+   public class Adminstrador : IEquatable<Adminstrador>
     {
         public string nombre { get; set; }
         public string password { get; set; }
@@ -22,6 +22,16 @@ namespace CapaDatos
         {
         }
 
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Adminstrador);
+        }
 
+        public bool Equals(Adminstrador other)
+        {
+            return other != null &&
+                   nombre == other.nombre &&
+                   password == other.password;
+        }
     }
 }
