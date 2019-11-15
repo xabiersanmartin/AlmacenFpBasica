@@ -239,7 +239,7 @@ namespace CapaAcceso
                 using (var con = GetInstance())
                 {
 
-                    var query = "SELECT Categoria * FROM categoria where codigoCategoria = @cod";
+                    var query = "SELECT * FROM categoria where codigoCategoria = @cod";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     cmd.Parameters.AddWithValue("@cod", categoria.codCategoria);
                     string mens = (string)cmd.ExecuteScalar();
@@ -313,7 +313,48 @@ namespace CapaAcceso
                 return subcategorias;
             }
         }
-        //TODO AñadirSubCategoria (Admin)
+        /// <summary>
+        /// Funcion que permite añadir una categoría
+        /// </summary>
+        /// <param name="categoria">Categoria que se desea añadir</param>
+        /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
+        public string AñadirSubCategoria(Subcategoria subcategoria)
+        {
+            List<Categoria> categorias = new List<Categoria>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM subcategoria where CodigoSubCategoria = @cod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@cod", subcategoria.codSubCategoria);
+                    string mens = (string)cmd.ExecuteScalar();
+                    if (!String.IsNullOrWhiteSpace(mens))
+                    {
+                        return $"Ya existe la SubCategoria";
+                    }
+
+                    string insert = "Insert INTO subcategoria(CodigoSubCategoria,NombreSubCategoria) values (@CodigoSubCategoria, @NombreSubCategoria)";//Igual no hay que añadir el codigo por ser autoincrement
+                    cmd.CommandText = insert;
+                    cmd.Parameters.AddWithValue("@CodigoSubCategoria", subcategoria.codSubCategoria);
+                    cmd.Parameters.AddWithValue("@NombreSubCategoria", subcategoria.nombreSubCategoria);
+
+                    int numFilas = cmd.ExecuteNonQuery();
+
+                    if (numFilas == 0)
+                    {
+                        return "No has añadido ningún dato";
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
         //TODO ModificarSubCategoria (Admin)
         //TODO EliminarSubCategoria (Admin)
         #endregion
