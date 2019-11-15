@@ -225,10 +225,14 @@ namespace CapaAcceso
             }
             return categorias;
         }
-        //TODO AñadirCategoria (Admin)
-        public List<Categoria> AñadirCategoria(string codCategoria, out string msg)
+
+        /// <summary>
+        /// Funcion que permite añadir una categoría
+        /// </summary>
+        /// <param name="categoria">Categoria que se desea añadir</param>
+        /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
+        public string AñadirCategoria(Categoria categoria)
         {
-            msg = "";
             List<Categoria> categorias = new List<Categoria>();
             try
             {
@@ -237,39 +241,38 @@ namespace CapaAcceso
 
                     var query = "SELECT Categoria * FROM categoria where codigoCategoria = @cod";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@cod", codCategoria);
-                    //TODO continuar haciendo la funcion
-                    using (SQLiteDataReader drcategoria = cmd.ExecuteReader())
+                    cmd.Parameters.AddWithValue("@cod", categoria.codCategoria);
+                    string mens = (string)cmd.ExecuteScalar();
+                    if (!String.IsNullOrWhiteSpace(mens))
                     {
-                        if (!drcategoria.HasRows)
-                        {
-                            msg = "No hay Categorias";
-                            con.Close();
-                            return categorias;
-                        }
-                        while (drcategoria.Read())
-                        {
-                            Categoria categoria = new Categoria();
-                            categoria.codCategoria = int.Parse(drcategoria["CodigoCategoria"].ToString());
-                            categoria.codCategoria = int.Parse(drcategoria["NombreCategoria"].ToString());
-                            categorias.Add(categoria);
-                        }
+                        return $"Ya existe la categoria";
+                    }
+
+                    string insert = "Insert INTO categoria(CodigoCategoria,NombreCategoria) values (@CodigoCategoria, @NombreCategoria)";//Igual no hay que añadir el codigo por ser autoincrement
+                    cmd.CommandText = insert;
+                    cmd.Parameters.AddWithValue("@CodigoCategoria", categoria.codCategoria);
+                    cmd.Parameters.AddWithValue("@NombreCategoria", categoria.nombreCategoria);
+                                        
+                    int numFilas = cmd.ExecuteNonQuery();
+
+                    if (numFilas == 0)
+                    {
+                        return "No has añadido ningún dato";
                     }
                     con.Close();
                 }
             }
             catch (Exception e)
             {
-                msg = e.Message;
+                return e.Message;
             }
-            return categorias;
+            return "";
         }
         //TODO ModificarCategoria (Admin)
         //TODO EliminarCategoria (Admin)
         #endregion
 
         #region Funciones para las subcategorias
-
         public List<Subcategoria> CargarSubcategoria(out string msg)
         {
             List<Subcategoria> subcategorias = new List<Subcategoria>();
@@ -310,7 +313,6 @@ namespace CapaAcceso
                 return subcategorias;
             }
         }
-
         //TODO AñadirSubCategoria (Admin)
         //TODO ModificarSubCategoria (Admin)
         //TODO EliminarSubCategoria (Admin)
