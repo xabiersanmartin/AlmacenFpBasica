@@ -403,9 +403,78 @@ namespace CapaAcceso
             }
             return productos;
         }
-        //TODO ModificarProducto
-        //TODO AñadirProducto (Admin)
+        //TODO ModificarProducto (Admin)
+        //TODO AñadirProducto
+        public string AñadirProducto(Producto newProducto)
+        {
+            List<Producto> productos = new List<Producto>();
+            try
+            {
+                using(var con = GetInstance())
+                {
+                    var query = "SELECT * FROM productos WHERE CodigoProducto = @pod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@pod", newProducto.codigoProducto);
+                    string msg = (string)cmd.ExecuteScalar();
+                    if (!String.IsNullOrWhiteSpace(msg))
+                    {
+                        return $"Ya existe el Producto que intentas añadir";
+                    }
+
+                    string insert = "INSERT INTO producto(CodigoProducto,Descripcion,Stock,Precio) values (@CodigoProduct, @Descripcion, @Stock, @Precio)";
+                    cmd.CommandText = insert;
+                    cmd.Parameters.AddWithValue("@CodigoProducto", newProducto.codigoProducto);
+                    cmd.Parameters.AddWithValue("@Descripcion", newProducto.descripcion);
+                    cmd.Parameters.AddWithValue("@Stock", newProducto.stock);
+                    cmd.Parameters.AddWithValue("@Precio", newProducto.precio);
+
+                    int numFilas = cmd.ExecuteNonQuery();
+
+                    if (numFilas == 0)
+                    {
+                        return "No has añadido nigun producto";
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+                
+            }
+            return "";
+        }
+
         //TODO EliminarProducto (Admin)
+        public string EliminarProducto(Producto deleteProducto)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "DELETE FROM productos WHERE CodigoProducto = @pod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@pod", deleteProducto.codigoProducto);
+                    string msg = (string)cmd.ExecuteScalar();
+
+                    if (String.IsNullOrWhiteSpace(msg))
+                    {
+                        return $"El producto que intentas eliminar no existe";
+                    }
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+                
+            }
+            return "";
+        }
         #endregion
 
         #region Funciones para la empresa
