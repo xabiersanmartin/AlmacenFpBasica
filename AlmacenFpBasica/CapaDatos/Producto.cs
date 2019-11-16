@@ -34,9 +34,8 @@ namespace CapaDatos
             this.precio = precio;
         }
 
-        public Producto(int codigoProducto, int codigoCategoria, int codigoSubcategoria, string descripcion, int stock, decimal precio)
+        public Producto(int codigoCategoria, int codigoSubcategoria, string descripcion, int stock, decimal precio)
         {
-            this.codigoProducto = codigoProducto;
             this.codigoCategoria = codigoCategoria;
             this.codigoSubcategoria = codigoSubcategoria;
             this.descripcion = descripcion;
