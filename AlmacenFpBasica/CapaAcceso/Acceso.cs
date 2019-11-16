@@ -388,6 +388,8 @@ namespace CapaAcceso
                         {
                             Producto producto = new Producto();
                             producto.codigoProducto = int.Parse(lector["CodigoProducto"].ToString());
+                            producto.codigoCategoria = int.Parse(lector["CodigoCategoria"].ToString());
+                            producto.codigoSubcategoria = int.Parse(lector["CodigoSubcategoria"].ToString());
                             producto.descripcion = lector["Descripion"].ToString();
                             producto.precio = int.Parse(lector["Precio"].ToString());
                             producto.stock = int.Parse(lector["Stock"].ToString());
@@ -421,11 +423,10 @@ namespace CapaAcceso
                         return $"Ya existe el Producto que intentas añadir";
                     }
 
-                    string insert = "INSERT INTO productos(CodigoProducto,CodigoCategoria,CodigoSubcategoria,Descripcion,Stock,Precio) values (@CodigoProducto, @CodigoCategoria, @CodigoSubcategoria @Descripcion, @Stock, @Precio)";
+                    string insert = "INSERT INTO productos(CodigoCategoria,CodigoSubcategoria,Descripcion,Stock,Precio) values (@CodigoCategoria, @CodigoSubcategoria @Descripcion, @Stock, @Precio)";
                     cmd.CommandText = insert;
-                    cmd.Parameters.AddWithValue("@CodigoProducto", newProducto.codigoProducto);
                     cmd.Parameters.AddWithValue("@CodigoCategoria", newProducto.codigoCategoria);
-                    cmd.Parameters.AddWithValue("@CodigoSubcategoria", newProducto.codigoSubcategoria);
+                    cmd.Parameters.AddWithValue("@CodigoSubCategoria", newProducto.codigoSubcategoria);
                     cmd.Parameters.AddWithValue("@Descripcion", newProducto.descripcion);
                     cmd.Parameters.AddWithValue("@Stock", newProducto.stock);
                     cmd.Parameters.AddWithValue("@Precio", newProducto.precio);
