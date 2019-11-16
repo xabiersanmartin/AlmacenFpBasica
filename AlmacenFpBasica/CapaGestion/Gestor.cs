@@ -27,5 +27,17 @@ namespace CapaGestion
         {
             return nuevoacces.CargarTipos(out mensaje);
         }
+        public List<Categoria> CargarCategoria(out string mensaje)
+        {
+            return nuevoacces.CargarCategorias(out mensaje);
+        }
+        public List<Subcategoria> CargarSubCategoria(out string mensaje)
+        {
+            return nuevoacces.CargarSubcategoria(out mensaje);
+        }
+        public List<Producto> AnadirProducto()
+        {
+            return nuevoacces.AñadirProducto(p);
+        }
     }
 }

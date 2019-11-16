@@ -47,7 +47,18 @@ namespace CapaPresentacion
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            cboTipo.Items.Clear();
+            cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
+            cboCat.Items.Clear();
+            cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboSubCat.Items.Clear();
+            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+        }
 
+        private void btnAnadir_Click(object sender, EventArgs e)
+        {
+            Producto nuevoProducto = new Producto(txtDescripcion.Text,int.Parse(txtCantidad.Text),int.Parse(txtPrecio.Text));
+            Program.Gestor.();
         }
     }
 }
