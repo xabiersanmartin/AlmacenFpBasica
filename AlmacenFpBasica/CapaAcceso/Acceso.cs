@@ -233,7 +233,7 @@ namespace CapaAcceso
         /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
         public string AñadirCategoria(Categoria categoria)
         {
-            List<Categoria> categorias = new List<Categoria>();
+            
             try
             {
                 using (var con = GetInstance())
@@ -320,7 +320,7 @@ namespace CapaAcceso
         /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
         public string AñadirSubCategoria(Subcategoria subcategoria)
         {
-            List<Subcategoria> subcategorias = new List<Subcategoria>();
+           
             try
             {
                 using (var con = GetInstance())
@@ -407,7 +407,7 @@ namespace CapaAcceso
         //TODO AñadirProducto
         public string AñadirProducto(Producto newProducto)
         {
-            List<Producto> productos = new List<Producto>();
+            
             try
             {
                 using(var con = GetInstance())
