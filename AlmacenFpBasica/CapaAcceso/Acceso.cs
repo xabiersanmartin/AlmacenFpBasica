@@ -421,9 +421,11 @@ namespace CapaAcceso
                         return $"Ya existe el Producto que intentas añadir";
                     }
 
-                    string insert = "INSERT INTO producto(CodigoProducto,CodigoCategoria,CodigoSubcategoria,Descripcion,Stock,Precio) values (@CodigoProducto, @CodigoCategoria, @CodigoSubcategoria @Descripcion, @Stock, @Precio)";
+                    string insert = "INSERT INTO productos(CodigoProducto,CodigoCategoria,CodigoSubcategoria,Descripcion,Stock,Precio) values (@CodigoProducto, @CodigoCategoria, @CodigoSubcategoria @Descripcion, @Stock, @Precio)";
                     cmd.CommandText = insert;
                     cmd.Parameters.AddWithValue("@CodigoProducto", newProducto.codigoProducto);
+                    cmd.Parameters.AddWithValue("@CodigoProducto", newProducto.codigoCategoria);
+                    cmd.Parameters.AddWithValue("@CodigoProducto", newProducto.codigoSubcategoria);
                     cmd.Parameters.AddWithValue("@Descripcion", newProducto.descripcion);
                     cmd.Parameters.AddWithValue("@Stock", newProducto.stock);
                     cmd.Parameters.AddWithValue("@Precio", newProducto.precio);
