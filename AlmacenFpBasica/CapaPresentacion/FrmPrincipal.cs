@@ -60,8 +60,9 @@ namespace CapaPresentacion
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
-            Producto nuevoProducto = new Producto(int.Parse(cboCat.SelectedItem.ToString()),int.Parse(cboSubCat.SelectedItem.ToString()),txtDescripcion.Text,int.Parse(txtCantidad.Text),int.Parse(txtPrecio.Text));
-            Program.Gestor.AnadirProducto(nuevoProducto);
+            Producto nuevoProducto = new Producto(int.Parse(cboCat.SelectedItem.ToString()),int.Parse(cboSubCat.SelectedItem.ToString()),txtDescripcion.Text,int.Parse(txtCantidad.Text),decimal.Parse(txtPrecio.Text));
+            mensaje=  Program.Gestor.AnadirProducto(nuevoProducto);
+            MessageBox.Show(mensaje);
         }
     }
 }

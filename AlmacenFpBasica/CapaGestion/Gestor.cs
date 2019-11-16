@@ -35,9 +35,9 @@ namespace CapaGestion
         {
             return nuevoacces.CargarSubcategoria(out mensaje);
         }
-        public List<Producto> AnadirProducto()
+        public string AnadirProducto(Producto nuevoProducto)
         {
-            return nuevoacces.AñadirProducto(p);
+            return nuevoacces.AnadirProducto(nuevoProducto);
         }
     }
 }

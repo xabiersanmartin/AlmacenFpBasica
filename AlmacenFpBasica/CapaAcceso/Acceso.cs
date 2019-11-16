@@ -407,7 +407,7 @@ namespace CapaAcceso
         }
         //TODO ModificarProducto (Admin)
         //TODO AñadirProducto
-        public string AñadirProducto(Producto newProducto)
+        public string AnadirProducto(Producto newProducto)
         {
             
             try
