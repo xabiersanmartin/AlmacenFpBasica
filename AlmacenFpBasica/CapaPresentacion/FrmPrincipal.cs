@@ -49,10 +49,13 @@ namespace CapaPresentacion
         {
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
+            cboTipo.DisplayMember = "TiposProducto";
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboCat.DisplayMember = "nombreCategoria";
             cboSubCat.Items.Clear();
             cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+            cboSubCat.DisplayMember = "nombreSubCategoria";
         }
 
         private void btnAnadir_Click(object sender, EventArgs e)
