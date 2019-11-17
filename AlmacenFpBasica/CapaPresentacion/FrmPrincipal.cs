@@ -49,15 +49,27 @@ namespace CapaPresentacion
         {
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
-            cboTipo.DisplayMember = "TipoProducto";
+            cboTipo.DisplayMember = "Tipo";
+
+            cboTipo1.Items.Clear();
+            cboTipo1.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
+            cboTipo1.DisplayMember = "Tipo";
 
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
-            cboCat.DisplayMember = "nombreCategoria";
+            cboCat.DisplayMember = "NombreCategoria";
+
+            cboCat1.Items.Clear();
+            cboCat1.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboCat1.DisplayMember = "NombreCategoria";
 
             cboSubCat.Items.Clear();
             cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
-            cboSubCat.DisplayMember = "nombreSubCategoria";
+            cboSubCat.DisplayMember = "NombreSubCategoria";
+
+            cboSubCat1.Items.Clear();
+            cboSubCat1.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+            cboSubCat1.DisplayMember = "NombreSubCategoria";
         }
 
         private void btnAnadir_Click(object sender, EventArgs e)
