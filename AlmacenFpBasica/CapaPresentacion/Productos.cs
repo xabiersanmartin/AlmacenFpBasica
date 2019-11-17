@@ -31,5 +31,10 @@ namespace CapaPresentacion
                 MessageBox.Show(mensaje);
             }
         }
+
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Mi intención sería que al seleccioar un producto del dvg, se pudiera modificar
+        }
     }
 }
