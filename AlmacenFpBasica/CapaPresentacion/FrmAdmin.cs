@@ -15,6 +15,8 @@ namespace CapaPresentacion
     {
         public string mensaje="";
         Producto eliminarP = new Producto();
+        Categoria eliminarC = new Categoria();
+        Subcategoria eliminarSC = new Subcategoria();
         public FrmAdmin()
         {
             InitializeComponent();
@@ -52,6 +54,18 @@ namespace CapaPresentacion
            
             eliminarP =  cboProd.SelectedItem as Producto;
             Program.Gestor.EliminarProducto(eliminarP);
+        }
+
+        private void btnCat_Click(object sender, EventArgs e)
+        {
+            eliminarC = cboCat.SelectedItem as Categoria;
+            Program.Gestor.EliminarCategoria(eliminarC);
+        }
+
+        private void btnSubCat_Click(object sender, EventArgs e)
+        {
+            eliminarSC = cboSubCat.SelectedItem as Subcategoria;
+            Program.Gestor.EliminarSubCategoria(eliminarSC);
         }
     }
 }

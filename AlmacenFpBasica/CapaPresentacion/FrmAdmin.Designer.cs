@@ -173,6 +173,7 @@
             this.btnCat.TabIndex = 7;
             this.btnCat.Text = "Eliminar";
             this.btnCat.UseVisualStyleBackColor = true;
+            this.btnCat.Click += new System.EventHandler(this.btnCat_Click);
             // 
             // btnSubCat
             // 
@@ -182,6 +183,7 @@
             this.btnSubCat.TabIndex = 8;
             this.btnSubCat.Text = "Eliminar";
             this.btnSubCat.UseVisualStyleBackColor = true;
+            this.btnSubCat.Click += new System.EventHandler(this.btnSubCat_Click);
             // 
             // FrmAdmin
             // 

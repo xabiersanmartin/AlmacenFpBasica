@@ -38,12 +38,20 @@ namespace CapaGestion
         {
             return nuevoacces.CargarCategorias(out mensaje);
         }
+        public string EliminarCategoria(Categoria categoria)
+        {
+            return nuevoacces.EliminarCategoria(categoria);
+        }
         #endregion
 
         #region Funciones para las subcategorias
         public List<Subcategoria> CargarSubCategoria(out string mensaje)
         {
             return nuevoacces.CargarSubcategoria(out mensaje);
+        }
+        public string EliminarSubCategoria(Subcategoria subcategoria)
+        {
+            return nuevoacces.EliminarSubCategoria(subcategoria);
         }
         #endregion
 
@@ -56,9 +64,9 @@ namespace CapaGestion
         {
             return nuevoacces.AnadirProducto(nuevoProducto);
         }
-        public string EliminarProducto(Producto Producto)
+        public string EliminarProducto(Producto producto)
         {
-            return nuevoacces.EliminarProducto(Producto);
+            return nuevoacces.EliminarProducto(producto);
         }
         #endregion
     }
