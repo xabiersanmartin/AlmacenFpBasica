@@ -39,7 +39,9 @@ namespace CapaPresentacion
 
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Program.Gestor.CargarProductos(out msg);
+            List<Producto> listaP = new List<Producto>();
+           listaP = Program.Gestor.CargarProductos(out msg);
+            dgvProductos.DataSource = listaP;
         }
     }
 }

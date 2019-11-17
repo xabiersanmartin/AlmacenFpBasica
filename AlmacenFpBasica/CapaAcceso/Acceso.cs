@@ -497,7 +497,7 @@ namespace CapaAcceso
                 using (var con = GetInstance())
                 {
 
-                    var query = "SELECT * FROM productos";
+                    var query = "SELECT CodigoProducto, Descripcion, Precio, Stock, Categoria.NombreCategoria, SubCategoria.NombreSubCategoria FROM (( productos INNER JOIN subCategoria on productos.CodigoSubCategoria=SubCategoria.CodigoSubcategoria) INNER JOIN categoria on productos.CodigoCategoria=categoria.CodigoCategoria);";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     using (SQLiteDataReader lector = cmd.ExecuteReader())
                     {
@@ -511,8 +511,8 @@ namespace CapaAcceso
                         {
                             Producto producto = new Producto();
                             producto.codigoProducto = int.Parse(lector["CodigoProducto"].ToString());
-                            producto.codigoCategoria = int.Parse(lector["CodigoCategoria"].ToString());
-                            producto.codigoSubcategoria = int.Parse(lector["CodigoSubcategoria"].ToString());
+                            producto.nombreCategoria = lector["NombreCategoria"].ToString();
+                            producto.nombreSubCategoria = lector["NombreSubCategoria"].ToString();
                             producto.descripcion = lector["Descripion"].ToString();
                             producto.precio = int.Parse(lector["Precio"].ToString());
                             producto.stock = int.Parse(lector["Stock"].ToString());
