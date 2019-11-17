@@ -14,6 +14,8 @@ namespace CapaGestion
 
         string mensaje { get; set; }
 
+        //Hecho
+        #region Funciones para el admin
         public bool IniciarSesion(Adminstrador admin, out string mensaje)
         {
             return nuevoacces.IniciarSesion(admin, out mensaje);
@@ -22,22 +24,38 @@ namespace CapaGestion
         {
             return nuevoacces.ModificarPassAdmin(nuevaPass);
         }
+        #endregion
 
+        #region Funciones para los tipos
         public List<Tipo> CargarTipos(out string mensaje)
         {
             return nuevoacces.CargarTipos(out mensaje);
         }
+        #endregion
+
+        #region Funciones para las categorias
         public List<Categoria> CargarCategoria(out string mensaje)
         {
             return nuevoacces.CargarCategorias(out mensaje);
         }
+        #endregion
+
+        #region Funciones para las subcategorias
         public List<Subcategoria> CargarSubCategoria(out string mensaje)
         {
             return nuevoacces.CargarSubcategoria(out mensaje);
+        }
+        #endregion
+
+        #region Funciones para los productos
+        public List<Producto> CargarProductos(out string mensaje)
+        {
+            return nuevoacces.CargarProductos(out mensaje);
         }
         public string AnadirProducto(Producto nuevoProducto)
         {
             return nuevoacces.AnadirProducto(nuevoProducto);
         }
+        #endregion
     }
 }

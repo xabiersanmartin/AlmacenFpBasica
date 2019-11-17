@@ -65,12 +65,13 @@ namespace CapaAcceso
             return db;
         }
 
+        //Hecho
         #region Funciones para el administrador
         /// <summary>
-        /// Funcion que devuelve el administrador
+        /// Funcion usada para iniciar sesion
         /// </summary>
         /// <param name="msg"></param>
-        /// <returns>Retorna el administrador, o null en su defecto</returns>
+        /// <returns>Retorna true o false y un mensaje</returns>
         public bool IniciarSesion(Adminstrador admin, out string msg)
         {
             msg = "";
@@ -125,7 +126,7 @@ namespace CapaAcceso
                 using (var con = GetInstance())
                 {
 
-                    var query = "UPDATE administrador Set administrador.Password @Password";
+                    var query = "UPDATE administrador Set Password = @Password";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     cmd.Parameters.AddWithValue("@Password",nuevaPass);
                     cmd.ExecuteNonQuery();
@@ -135,7 +136,6 @@ namespace CapaAcceso
             catch (Exception e)
             {
                 return e.Message;
-
             }
             return "";
         }
@@ -405,7 +405,36 @@ namespace CapaAcceso
             }
             return productos;
         }
-        //TODO ModificarProducto (Admin)
+
+        /// <summary>
+        /// Funcion que permite modificar el stock, precio y la descripcion de un producto
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns>Retorna un mensaje con "" si todo ha ido bien</returns>
+        public String ModificarProducto(Producto producto)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "UPDATE productos Set Descripcion = @Descripcion, Stock = @Stock, Precio = @Precio WHERE CodigoProducto = @CodigoProducto";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Descripcion", producto.descripcion);
+                    cmd.Parameters.AddWithValue("@Stock", producto.stock);
+                    cmd.Parameters.AddWithValue("@Precio", producto.precio);
+
+                    cmd.Parameters.AddWithValue("@CodigoProducto", producto.codigoProducto);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
         //TODO AñadirProducto
         public string AnadirProducto(Producto newProducto)
         {

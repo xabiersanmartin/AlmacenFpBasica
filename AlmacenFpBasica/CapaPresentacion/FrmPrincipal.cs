@@ -64,5 +64,11 @@ namespace CapaPresentacion
             mensaje=  Program.Gestor.AnadirProducto(nuevoProducto);
             MessageBox.Show(mensaje);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Productos productos = new Productos();
+            productos.Show();
+        }
     }
 }
