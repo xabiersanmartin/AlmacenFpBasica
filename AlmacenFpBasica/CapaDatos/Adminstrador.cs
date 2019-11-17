@@ -30,7 +30,7 @@ namespace CapaDatos
         public bool Equals(Adminstrador other)
         {
             return other != null &&
-                   nombre == other.nombre &&
+                   nombre.ToUpper() == other.nombre.ToUpper() &&
                    password == other.password;
         }
     }
