@@ -225,7 +225,6 @@ namespace CapaAcceso
             }
             return categorias;
         }
-
         /// <summary>
         /// Funcion que permite añadir una categoría
         /// </summary>
@@ -413,7 +412,6 @@ namespace CapaAcceso
             }
             return "";
         }
-
         /// <summary>
         /// Funcion que permite modificar el nombre de la SubCategoria pasada por parametro
         /// </summary>
@@ -440,7 +438,6 @@ namespace CapaAcceso
             }
             return "";
         }
-
         /// <summary>
         /// Metodo que permite borrar de la base de datos la subcategoria pasada por parametro
         /// </summary>
@@ -477,6 +474,7 @@ namespace CapaAcceso
         }
         #endregion
 
+        //TODO Insertar comentarios a las funciones
         #region Funciones para los productos
         /// <summary>
         /// Funcion que Carga los Productos
@@ -523,43 +521,17 @@ namespace CapaAcceso
             }
             return productos;
         }
-
         /// <summary>
         /// Funcion que permite modificar el stock, precio y la descripcion de un producto
         /// </summary>
         /// <param name="producto"></param>
         /// <returns>Retorna un mensaje con "" si todo ha ido bien</returns>
-        public String ModificarProducto(Producto producto)
+        public string AnadirProducto(Producto newProducto)
         {
+
             try
             {
                 using (var con = GetInstance())
-                {
-                    var query = "UPDATE productos Set Descripcion = @Descripcion, Stock = @Stock, Precio = @Precio WHERE CodigoProducto = @CodigoProducto";
-                    SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Descripcion", producto.descripcion);
-                    cmd.Parameters.AddWithValue("@Stock", producto.stock);
-                    cmd.Parameters.AddWithValue("@Precio", producto.precio);
-
-                    cmd.Parameters.AddWithValue("@CodigoProducto", producto.codigoProducto);
-
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-            return "";
-        }
-        //TODO AñadirProducto
-        public string AnadirProducto(Producto newProducto)
-        {
-            
-            try
-            {
-                using(var con = GetInstance())
                 {
                     var query = "SELECT * FROM productos WHERE CodigoProducto = @pod";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
@@ -590,12 +562,34 @@ namespace CapaAcceso
             catch (Exception e)
             {
                 return e.Message;
-                
+
             }
             return "";
         }
+        public String ModificarProducto(Producto producto)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "UPDATE productos Set Descripcion = @Descripcion, Stock = @Stock, Precio = @Precio WHERE CodigoProducto = @CodigoProducto";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Descripcion", producto.descripcion);
+                    cmd.Parameters.AddWithValue("@Stock", producto.stock);
+                    cmd.Parameters.AddWithValue("@Precio", producto.precio);
 
-        //TODO EliminarProducto (Admin)
+                    cmd.Parameters.AddWithValue("@CodigoProducto", producto.codigoProducto);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
         public string EliminarProducto(Producto deleteProducto)
         {
             try
@@ -628,8 +622,67 @@ namespace CapaAcceso
         #endregion
 
         #region Funciones para la empresa
-        //TODO CargarEmpresa
-        //TODO ModificarEmpresa
+        /// <summary>
+        /// Funcion que devuelve la empresa de la base de datos
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns>Retorna un String con "" o un mensaje de error en su defecto</returns>
+        public Empresa CargarEmpresa(out string msg)
+        {
+            msg = "";
+            Empresa empresa = new Empresa();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT * FROM Empresa";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    using (SQLiteDataReader dradmin = cmd.ExecuteReader())
+                    {
+                        if (dradmin.Read()) // ES UN IF, PORQUE SOLO ES UN CAMPO
+                        {
+                            empresa.nombre = dradmin["Nombre"].ToString();
+                            empresa.logo = dradmin["Logo"].ToString();
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+
+            }
+            return empresa;
+        }
+        /// <summary>
+        /// Funcion que permite modificar el nombre y el logo de una empresa
+        /// </summary>
+        /// <param name="empresa"></param>
+        /// <returns>Retorna un String con "" si todo ha ido bien o un mensaje de error en su defecto</returns>
+        public String ModificarEmpresa(Empresa empresa)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "UPDATE Empresa Set Nombre = @Nombre, Logo = @Logo WHERE Nombre = @Nombre";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Nombre", empresa.nombre);
+                    cmd.Parameters.AddWithValue("@Logo", empresa.logo);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
         #endregion
 
     }
