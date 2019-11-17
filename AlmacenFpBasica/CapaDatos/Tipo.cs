@@ -8,14 +8,17 @@ namespace CapaDatos
 {
     public class Tipo
     {
-        public enum TiposProducto { solido, liquido, ropa }
-        public TiposProducto TipoProducto { get; set; }
+ 
+        public string NombreTipo { get; set; }
+
         public Tipo()
         {
+
         }
-        public Tipo(TiposProducto tipoProducto)
+
+        public Tipo(string nombreTipo)
         {
-            TipoProducto = tipoProducto;
+            NombreTipo = nombreTipo;
         }
     }
 }
