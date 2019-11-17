@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace CapaPresentacion
 {
     public partial class FrmAdmin : Form
     {
+        public string mensaje="";
+        Producto eliminarP = new Producto();
         public FrmAdmin()
         {
             InitializeComponent();
@@ -31,7 +34,24 @@ namespace CapaPresentacion
 
         private void FrmAdmin_Load(object sender, EventArgs e)
         {
+            cboProd.Items.Clear();
+            cboProd.Items.AddRange(Program.Gestor.CargarProductos(out mensaje).ToArray());
+            cboProd.DisplayMember = "descripcion";
 
+            cboCat.Items.Clear();
+            cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboCat.DisplayMember = "nombreCategoria";
+
+            cboSubCat.Items.Clear();
+            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+            cboSubCat.DisplayMember = "nombreCategoria";
+        }
+
+        private void btnProd_Click(object sender, EventArgs e)
+        {
+           
+            eliminarP =  cboProd.SelectedItem as Producto;
+            Program.Gestor.EliminarProducto(eliminarP);
         }
     }
 }

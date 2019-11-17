@@ -56,6 +56,10 @@ namespace CapaGestion
         {
             return nuevoacces.AnadirProducto(nuevoProducto);
         }
+        public string EliminarProducto(Producto Producto)
+        {
+            return nuevoacces.EliminarProducto(Producto);
+        }
         #endregion
     }
 }
