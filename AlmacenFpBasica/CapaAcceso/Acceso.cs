@@ -149,37 +149,44 @@ namespace CapaAcceso
         /// <returns>Retorna una lista con los tipos, o null en su defecto</returns>
         public List<Tipo> CargarTipos(out string msg)
         {
-            msg = "";
             List<Tipo> tipos = new List<Tipo>();
             try
             {
                 using (var con = GetInstance())
                 {
 
-                    var query = "SELECT * FROM TIPO";
+                    string query = "SELECT * FROM tipo;";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    using (SQLiteDataReader drtipo = cmd.ExecuteReader())
-                    {
+                    SQLiteDataReader drtipo = cmd.ExecuteReader();
+
+                    
                         if (!drtipo.HasRows)
                         {
                             msg = "No hay Tipos";
+                            con.Close();
                             return tipos;
                         }
+
                         while (drtipo.Read())
                         {
-                            Tipo tipo = new Tipo();
-                            tipo.TipoProducto = (Tipo.TiposProducto)drtipo["Tipo"];
-                            tipos.Add(tipo);
+                            Tipo newtipo = new Tipo();
+                            newtipo.NombreTipo = drtipo["Tipo"].ToString();
+                            tipos.Add(newtipo);
                         }
-                    }
+                    
                     con.Close();
+                    drtipo.Close();
+                    msg = "";
+                    return tipos;
                 }
             }
+
             catch (Exception e)
             {
                 msg = e.Message;
+                return tipos;
             }
-            return tipos;
+            
         }
         #endregion
 
@@ -191,39 +198,42 @@ namespace CapaAcceso
         /// <returns>Retorna una lista con las categorias, o null en su defecto</returns>
         public List<Categoria> CargarCategorias( out string msg)
         {
-            msg = "";
             List<Categoria> categorias = new List<Categoria>();
             try
             {
                 using (var con = GetInstance())
                 {
-
-                    var query = "SELECT * FROM categoria";
+                    string query = "SELECT * FROM categoria;";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    using (SQLiteDataReader drcategoria = cmd.ExecuteReader())
-                    {
+                    SQLiteDataReader drcategoria = cmd.ExecuteReader();
+                    
                         if (!drcategoria.HasRows)
                         {
                             msg = "No hay Categorias";
                             con.Close();
                             return categorias;
                         }
+
                         while (drcategoria.Read())
                         {
                             Categoria categoria = new Categoria();
                             categoria.codCategoria = int.Parse(drcategoria["CodigoCategoria"].ToString());
-                            categoria.codCategoria = int.Parse(drcategoria["NombreCategoria"].ToString());
+                            categoria.nombreCategoria = drcategoria["NombreCategoria"].ToString();
                             categorias.Add(categoria);
                         }
-                    }
+                    
                     con.Close();
+                    drcategoria.Close();
+                    msg = "";
+                    return categorias;
                 }
             }
             catch (Exception e)
             {
-                msg = e.Message;
+                msg = "Error al cargar las Categorias ";
+                return categorias;
             }
-            return categorias;
+            
         }
         /// <summary>
         /// Funcion que permite añadir una categoría
