@@ -14,6 +14,9 @@ namespace CapaPresentacion
     public partial class FrmPrincipal : Form
     {
         public string mensaje="";
+        Tipo verT = new Tipo();
+        Categoria verC = new Categoria();
+        Subcategoria verSC = new Subcategoria();
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -82,6 +85,12 @@ namespace CapaPresentacion
         private void button1_Click(object sender, EventArgs e)
         {
             Productos productos = new Productos();
+            verT = cboTipo1.SelectedItem as Tipo;
+            verC = cboCat1.SelectedItem as Categoria;
+            verSC = cboSubCat1.SelectedItem as Subcategoria;
+            productos.tipo = verT;
+            productos.categoria = verC;
+            productos.subcategoria = verSC;
             productos.Show();
         }
     }

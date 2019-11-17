@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,10 @@ namespace CapaPresentacion
 {
     public partial class Productos : Form
     {
+       public Tipo tipo = new Tipo();
+       public Categoria categoria = new Categoria();
+       public Subcategoria subcategoria = new Subcategoria();
+        string msg = "";
         public Productos()
         {
             InitializeComponent();
@@ -34,7 +39,7 @@ namespace CapaPresentacion
 
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Mi intención sería que al seleccioar un producto del dvg, se pudiera modificar
+            Program.Gestor.CargarProductos(out msg);
         }
     }
 }
