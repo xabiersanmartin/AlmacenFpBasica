@@ -52,11 +52,11 @@ namespace CapaPresentacion
         {
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
-            cboTipo.DisplayMember = "Tipo";
+            cboTipo.DisplayMember = "NombreTipo";
 
             cboTipo1.Items.Clear();
             cboTipo1.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
-            cboTipo1.DisplayMember = "Tipo";
+            cboTipo1.DisplayMember = "NombreTipo";
 
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
