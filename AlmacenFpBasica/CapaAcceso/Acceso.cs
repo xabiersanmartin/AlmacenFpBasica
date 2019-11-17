@@ -247,9 +247,8 @@ namespace CapaAcceso
                         return $"Ya existe la categoria";
                     }
 
-                    string insert = "Insert INTO categoria(CodigoCategoria,NombreCategoria) values (@CodigoCategoria, @NombreCategoria)";//Igual no hay que añadir el codigo por ser autoincrement
+                    string insert = "Insert INTO categoria(NombreCategoria) values (@NombreCategoria)";//No añadimos el codigo por ser autoincrement
                     cmd.CommandText = insert;
-                    cmd.Parameters.AddWithValue("@CodigoCategoria", categoria.codCategoria);
                     cmd.Parameters.AddWithValue("@NombreCategoria", categoria.nombreCategoria);
                                         
                     int numFilas = cmd.ExecuteNonQuery();
@@ -392,9 +391,8 @@ namespace CapaAcceso
                         return $"Ya existe la SubCategoria";
                     }
 
-                    string insert = "Insert INTO subcategoria(CodigoSubCategoria,NombreSubCategoria) values (@CodigoSubCategoria, @NombreSubCategoria)";//Igual no hay que añadir el codigo por ser autoincrement
+                    string insert = "Insert INTO subcategoria(NombreSubCategoria) values (@NombreSubCategoria)";//No añadimos el codigo por ser autoincrement
                     cmd.CommandText = insert;
-                    cmd.Parameters.AddWithValue("@CodigoSubCategoria", subcategoria.codSubCategoria);
                     cmd.Parameters.AddWithValue("@NombreSubCategoria", subcategoria.nombreSubCategoria);
 
                     int numFilas = cmd.ExecuteNonQuery();
@@ -474,7 +472,6 @@ namespace CapaAcceso
         }
         #endregion
 
-        //TODO Insertar comentarios a las funciones
         #region Funciones para los productos
         /// <summary>
         /// Funcion que Carga los Productos
@@ -522,10 +519,10 @@ namespace CapaAcceso
             return productos;
         }
         /// <summary>
-        /// Funcion que permite modificar el stock, precio y la descripcion de un producto
+        /// Funcion que añade un producto nuevo a la base de datos.
         /// </summary>
         /// <param name="producto"></param>
-        /// <returns>Retorna un mensaje con "" si todo ha ido bien</returns>
+        /// <returns>Retorna un mensaje con "" si todo ha ido bien, de lo contrario nos retorna un mensaje con el error.</returns>
         public string AnadirProducto(Producto newProducto)
         {
 
@@ -554,7 +551,7 @@ namespace CapaAcceso
 
                     if (numFilas == 0)
                     {
-                        return "No has añadido nigun producto";
+                        return "No has añadido ningun producto";
                     }
                     con.Close();
                 }
@@ -566,6 +563,11 @@ namespace CapaAcceso
             }
             return "";
         }
+        /// <summary>
+        /// Función que modifica la descripcionn stock y precio de un producto.
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns>Retorna un mensaje con "" si todo ha ido bien, de lo contrario nos retorna un mensaje con el error.</returns>
         public String ModificarProducto(Producto producto)
         {
             try
@@ -590,6 +592,11 @@ namespace CapaAcceso
             }
             return "";
         }
+        /// <summary>
+        /// Funcion que elimina el producto elegido.
+        /// </summary>
+        /// <param name="producto"></param>
+        /// <returns>Retorna un mensaje con "" si todo ha ido bien, de lo contrario nos retorna un mensaje con el error.</returns>
         public string EliminarProducto(Producto deleteProducto)
         {
             try
