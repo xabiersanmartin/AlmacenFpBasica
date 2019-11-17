@@ -268,8 +268,66 @@ namespace CapaAcceso
             }
             return "";
         }
-        //TODO ModificarCategoria (Admin)
-        //TODO EliminarCategoria (Admin)
+        /// <summary>
+        /// Funcion que permite modificar el nombre de la categoria pasada por parametro
+        /// </summary>
+        /// <param name="subcategoria"></param>
+        /// <returns>Retorna un mensaje ("" si todo ha ido bien)</returns>
+        public String ModificarCategoria(Categoria categoria)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "UPDATE categoria Set NombreCategoria = @NombreCategoria WHERE CodigoCategoria = @CodigoCategoria";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@NombreCategoria", categoria.nombreCategoria);
+                    cmd.Parameters.AddWithValue("@CodigoCategoria", categoria.codCategoria);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
+        /// <summary>
+        /// Metodo que elimina una categoria
+        /// </summary>
+        /// <param name="deleteCategoria"></param>
+        /// <returns>Retorina un mensaje con "" si todo ha ido bien</returns>
+        public string EliminarCategoria(Categoria deleteCategoria)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "DELETE FROM categoria  WHERE CodigoCategoria = @cod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@cod", deleteCategoria.codCategoria);
+                    string msg = (string)cmd.ExecuteScalar();
+
+                    if (String.IsNullOrWhiteSpace(msg))
+                    {
+                        return $"La categoria que intentas eliminar no existe";
+                    }
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+
+            }
+            return "";
+        }
         #endregion
 
         #region Funciones para las subcategorias
@@ -355,8 +413,68 @@ namespace CapaAcceso
             }
             return "";
         }
-        //TODO ModificarSubCategoria (Admin)
-        //TODO EliminarSubCategoria (Admin)
+
+        /// <summary>
+        /// Funcion que permite modificar el nombre de la SubCategoria pasada por parametro
+        /// </summary>
+        /// <param name="subcategoria"></param>
+        /// <returns>Retorna un mensaje ("" si todo ha ido bien)</returns>
+        public String ModificarSubCategoria(Subcategoria subcategoria)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "UPDATE subcategoria Set NombreSubCategoria = @NombreSubCategoria WHERE CodigoSubCategoria = @CodigoSubCategoria";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@NombreSubCategoria", subcategoria.nombreSubCategoria);
+                    cmd.Parameters.AddWithValue("@CodigoSubCategoria", subcategoria.codSubCategoria);
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Metodo que permite borrar de la base de datos la subcategoria pasada por parametro
+        /// </summary>
+        /// <param name="deleteSubCategoria"></param>
+        /// <returns>Retorna "" si todo ha ido bien o un mensaje de error</returns>
+        public string EliminarSubCategoria(Subcategoria deleteSubCategoria)
+        {
+            try
+            {
+                using (var con = GetInstance())
+                {
+                    var query = "DELETE FROM subcategoria WHERE CodigoSubCategoria = @cod";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@cod", deleteSubCategoria.codSubCategoria);
+                    string msg = (string)cmd.ExecuteScalar();
+
+                    if (String.IsNullOrWhiteSpace(msg))
+                    {
+                        return $"La SubCategoria que intentas eliminar no existe";
+                    }
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+
+            }
+            return "";
+        }
         #endregion
 
         #region Funciones para los productos
