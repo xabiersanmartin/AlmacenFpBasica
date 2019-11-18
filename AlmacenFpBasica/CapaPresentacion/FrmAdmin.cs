@@ -46,7 +46,7 @@ namespace CapaPresentacion
 
             cboSubCat.Items.Clear();
             cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
-            cboSubCat.DisplayMember = "nombreCategoria";
+            cboSubCat.DisplayMember = "NombreSubCategoria";
         }
 
         private void btnProd_Click(object sender, EventArgs e)
