@@ -29,10 +29,7 @@ namespace CapaPresentacion
         private void Productos_Load(object sender, EventArgs e)
         {
           
-            if (!mensaje.Equals(""))
-            {
-                MessageBox.Show(mensaje);
-            }
+
             if (comprob == true)
             {
                 dgvProductos.DataSource = Program.Gestor.CargarProductos(out mensaje);

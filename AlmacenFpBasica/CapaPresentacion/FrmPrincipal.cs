@@ -56,30 +56,22 @@ namespace CapaPresentacion
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
             cboTipo.DisplayMember = "NombreTipo";
 
-            cboTipo1.Items.Clear();
-            cboTipo1.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
-            cboTipo1.DisplayMember = "NombreTipo";
 
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
             cboCat.DisplayMember = "NombreCategoria";
 
-            cboCat1.Items.Clear();
-            cboCat1.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
-            cboCat1.DisplayMember = "NombreCategoria";
+
 
             cboSubCat.Items.Clear();
             cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
             cboSubCat.DisplayMember = "NombreSubCategoria";
 
-            cboSubCat1.Items.Clear();
-            cboSubCat1.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
-            cboSubCat1.DisplayMember = "NombreSubCategoria";
         }
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
-            //if (!cboTipo.SelectedItem.Equals(null) || !cboCat.SelectedItem.Equals(null) || !cboSubCat.SelectedItem.Equals(null) || txtCantidad.Text!= "" || txtPrecio.Text != "" || txtDescripcion.Text != "")
+
             {
                 try
                 {
