@@ -10,10 +10,15 @@ namespace CapaDatos
     {
  
         public string NombreTipo { get; set; }
-
+        public int CodTipo { get; set; }
         public Tipo()
         {
 
+        }
+
+        public Tipo(string nombreTipo, int codTipo) : this(nombreTipo)
+        {
+            CodTipo = codTipo;
         }
 
         public Tipo(string nombreTipo)

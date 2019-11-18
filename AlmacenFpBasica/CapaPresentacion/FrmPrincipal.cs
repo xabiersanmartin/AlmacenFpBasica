@@ -83,7 +83,7 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    Producto nuevoProducto = new Producto(int.Parse(cboCat.SelectedItem.ToString()), int.Parse(cboSubCat.SelectedItem.ToString()), txtDescripcion.Text, int.Parse(txtCantidad.Text), decimal.Parse(txtPrecio.Text));
+                    Producto nuevoProducto = new Producto(verC.codCategoria, verSC.codSubCategoria, txtDescripcion.Text, int.Parse(txtCantidad.Text), decimal.Parse(txtPrecio.Text));
                     mensaje = Program.Gestor.AnadirProducto(nuevoProducto);
                     MessageBox.Show(mensaje);
                 }
@@ -98,14 +98,14 @@ namespace CapaPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmProductos productos = new FrmProductos();
-            verT = cboTipo1.SelectedItem as Tipo;
-            verC = cboCat1.SelectedItem as Categoria;
-            verSC = cboSubCat1.SelectedItem as Subcategoria;
-            productos.tipo = verT;
-            productos.categoria = verC;
-            productos.subcategoria = verSC;
-            productos.Show();
+            FrmProductos producto = new FrmProductos();
+            
+            
+           
+          //  productos.tipo.NombreTipo = verT.NombreTipo;
+          //  productos.categoria = verC;
+          //  productos.subcategoria = verSC;
+          //  productos.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -121,6 +121,21 @@ namespace CapaPresentacion
                 FrmProductos frm = new FrmProductos();
                 frm.Show();
             }
+        }
+
+        private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verT = cboTipo.SelectedItem as Tipo;
+        }
+
+        private void cboCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verC = cboCat.SelectedItem as Categoria;
+        }
+
+        private void cboSubCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verSC = cboSubCat.SelectedItem as Subcategoria;
         }
     }
 }
