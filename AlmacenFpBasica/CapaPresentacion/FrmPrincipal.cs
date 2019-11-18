@@ -133,5 +133,10 @@ namespace CapaPresentacion
         {
             verSC = cboSubCat.SelectedItem as Subcategoria;
         }
+
+        private void cboSubCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
