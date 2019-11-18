@@ -77,9 +77,21 @@ namespace CapaPresentacion
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
-            Producto nuevoProducto = new Producto(int.Parse(cboCat.SelectedItem.ToString()),int.Parse(cboSubCat.SelectedItem.ToString()),txtDescripcion.Text,int.Parse(txtCantidad.Text),decimal.Parse(txtPrecio.Text));
-            mensaje=  Program.Gestor.AnadirProducto(nuevoProducto);
-            MessageBox.Show(mensaje);
+            //if (!cboTipo.SelectedItem.Equals(null) || !cboCat.SelectedItem.Equals(null) || !cboSubCat.SelectedItem.Equals(null) || txtCantidad.Text!= "" || txtPrecio.Text != "" || txtDescripcion.Text != "")
+            {
+                try
+                {
+                    Producto nuevoProducto = new Producto(int.Parse(cboCat.SelectedItem.ToString()), int.Parse(cboSubCat.SelectedItem.ToString()), txtDescripcion.Text, int.Parse(txtCantidad.Text), decimal.Parse(txtPrecio.Text));
+                    mensaje = Program.Gestor.AnadirProducto(nuevoProducto);
+                    MessageBox.Show(mensaje);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
