@@ -99,13 +99,8 @@ namespace CapaPresentacion
         private void button1_Click(object sender, EventArgs e)
         {
             FrmProductos producto = new FrmProductos();
-            
-            
-           
-          //  productos.tipo.NombreTipo = verT.NombreTipo;
-          //  productos.categoria = verC;
-          //  productos.subcategoria = verSC;
-          //  productos.Show();
+            producto.comprob = true;
+            producto.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -119,6 +114,8 @@ namespace CapaPresentacion
             else
             {
                 FrmProductos frm = new FrmProductos();
+                frm.prods = productos;
+                frm.comprob = false;
                 frm.Show();
             }
         }

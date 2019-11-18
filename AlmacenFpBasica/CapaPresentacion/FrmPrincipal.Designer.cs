@@ -60,7 +60,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtDescripcionBuscar = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.grbAdmin.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -377,7 +377,7 @@
             // 
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.txtDescripcionBuscar);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnBuscar);
             this.groupBox3.Location = new System.Drawing.Point(67, 575);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
@@ -404,16 +404,16 @@
             this.txtDescripcionBuscar.Size = new System.Drawing.Size(369, 22);
             this.txtDescripcionBuscar.TabIndex = 13;
             // 
-            // button1
+            // btnBuscar
             // 
-            this.button1.Location = new System.Drawing.Point(533, 46);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 57);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "&Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnBuscar.Location = new System.Drawing.Point(533, 46);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(147, 57);
+            this.btnBuscar.TabIndex = 13;
+            this.btnBuscar.Text = "&Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FrmPrincipal
             // 
@@ -475,7 +475,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtDescripcionBuscar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
 

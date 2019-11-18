@@ -13,10 +13,9 @@ namespace CapaPresentacion
 {
     public partial class FrmProductos : Form
     {
-       public Tipo tipo = new Tipo();
-       public Categoria categoria = new Categoria();
-       public Subcategoria subcategoria = new Subcategoria();
-        string msg = "";
+       public List<Producto> prods = new List<Producto>();
+        public bool comprob;
+        public string mensaje;
         public FrmProductos()
         {
             InitializeComponent();
@@ -29,19 +28,25 @@ namespace CapaPresentacion
 
         private void Productos_Load(object sender, EventArgs e)
         {
-            string mensaje;
-            dgvProductos.DataSource = Program.Gestor.CargarProductos(out mensaje);
+          
             if (!mensaje.Equals(""))
             {
                 MessageBox.Show(mensaje);
             }
+            if (comprob == true)
+            {
+                dgvProductos.DataSource = Program.Gestor.CargarProductos(out mensaje);
+            }
+            else if (comprob==false)
+            {
+                dgvProductos.DataSource = prods;
+            }
+
         }
 
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           //List<Producto> listaP = new List<Producto>();
-           //listaP = Program.Gestor.CargarProductos(out msg);
-            dgvProductos.DataSource = FrmPrincipal.productos;
+           
         }
     }
 }
