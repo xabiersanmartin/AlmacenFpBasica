@@ -13,6 +13,8 @@ namespace CapaPresentacion
 {
     public partial class FrmPrincipal : Form
     {
+        public static List<Producto> productos;
+
         public string mensaje="";
         Tipo verT = new Tipo();
         Categoria verC = new Categoria();
@@ -96,7 +98,7 @@ namespace CapaPresentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Productos productos = new Productos();
+            FrmProductos productos = new FrmProductos();
             verT = cboTipo1.SelectedItem as Tipo;
             verC = cboCat1.SelectedItem as Categoria;
             verSC = cboSubCat1.SelectedItem as Subcategoria;
@@ -104,6 +106,21 @@ namespace CapaPresentacion
             productos.categoria = verC;
             productos.subcategoria = verSC;
             productos.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+           String msg;
+           productos = Program.Gestor.BuscarProductosPorDescripcion(txtDescripcionBuscar.Text,out msg);
+            if (msg!="")
+            {
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                FrmProductos frm = new FrmProductos();
+                frm.Show();
+            }
         }
     }
 }

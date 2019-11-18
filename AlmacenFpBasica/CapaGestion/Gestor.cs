@@ -68,6 +68,10 @@ namespace CapaGestion
         {
             return nuevoacces.EliminarProducto(producto);
         }
+        public List<Producto> BuscarProductosPorDescripcion(String descripcion, out string mensaje)
+        {
+            return nuevoacces.BuscarProductosPorDescripcion(descripcion, out mensaje);
+        }
         #endregion
     }
 }

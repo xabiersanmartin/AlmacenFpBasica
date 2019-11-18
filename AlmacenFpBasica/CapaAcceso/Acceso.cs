@@ -636,6 +636,48 @@ namespace CapaAcceso
             }
             return "";
         }
+
+        public List<Producto> BuscarProductosPorDescripcion(String descripcion, out string msg)
+        {
+            msg = "";
+            List<Producto> productos = new List<Producto>();
+            try
+            {
+                using (var con = GetInstance())
+                {
+
+                    var query = "SELECT CodigoProducto, Descripcion, Precio, Stock, Categoria.NombreCategoria, SubCategoria.NombreSubCategoria FROM (( productos INNER JOIN subCategoria on productos.CodigoSubCategoria=SubCategoria.CodigoSubcategoria) INNER JOIN categoria on productos.CodigoCategoria=categoria.CodigoCategoria) where Descripcion LIKE @DescripcionLike;";
+                    SQLiteCommand cmd = new SQLiteCommand(query, con);
+                    cmd.Parameters.AddWithValue("@DescripcionLike", "%"+descripcion+"%");
+                    using (SQLiteDataReader lector = cmd.ExecuteReader())
+                    {
+                        if (!lector.HasRows)
+                        {
+                            msg = "No hay Productos";
+                            con.Close();
+                            return productos;
+                        }
+                        while (lector.Read())
+                        {
+                            Producto producto = new Producto();
+                            producto.codigoProducto = int.Parse(lector["CodigoProducto"].ToString());
+                            producto.nombreCategoria = lector["NombreCategoria"].ToString();
+                            producto.nombreSubCategoria = lector["NombreSubCategoria"].ToString();
+                            producto.descripcion = lector["Descripcion"].ToString();
+                            producto.precio = int.Parse(lector["Precio"].ToString());
+                            producto.stock = int.Parse(lector["Stock"].ToString());
+                            productos.Add(producto);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return productos;
+        }
         #endregion
 
         #region Funciones para la empresa
