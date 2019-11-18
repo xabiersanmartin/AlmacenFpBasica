@@ -125,16 +125,13 @@ namespace CapaPresentacion
 
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            verT = cboTipo.SelectedItem as Tipo;
-            cboCat.Items.Clear();
+            verT = cboTipo.SelectedItem as Tipo;           
         }
 
         private void cboCat_SelectedIndexChanged(object sender, EventArgs e)
         {
           
             verC = cboCat.SelectedItem as Categoria;
-            cboSubCat.Items.Clear();
-
         }
 
         private void cboSubCat_SelectedIndexChanged(object sender, EventArgs e)
