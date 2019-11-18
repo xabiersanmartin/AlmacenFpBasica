@@ -60,17 +60,13 @@ namespace CapaPresentacion
             cboTipo1.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
             cboTipo1.DisplayMember = "NombreTipo";
 
-            cboCat.Items.Clear();
-            cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
-            cboCat.DisplayMember = "NombreCategoria";
+            
 
             cboCat1.Items.Clear();
             cboCat1.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
             cboCat1.DisplayMember = "NombreCategoria";
 
-            cboSubCat.Items.Clear();
-            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
-            cboSubCat.DisplayMember = "NombreSubCategoria";
+            
 
             cboSubCat1.Items.Clear();
             cboSubCat1.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
@@ -126,17 +122,24 @@ namespace CapaPresentacion
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             verT = cboTipo.SelectedItem as Tipo;
-            verC = cboCat.SelectedItem as Categoria;
+            cboCat.Items.Clear();
+            cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboCat.DisplayMember = "NombreCategoria";
+
         }
 
         private void cboCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            verSC = cboSubCat.SelectedItem as Subcategoria;
+          
+            verC = cboCat.SelectedItem as Categoria;
+            cboSubCat.Items.Clear();
+            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+            cboSubCat.DisplayMember = "NombreSubCategoria";
         }
 
         private void cboSubCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            verSC = cboSubCat.SelectedItem as Subcategoria;
         }
     }
 }
