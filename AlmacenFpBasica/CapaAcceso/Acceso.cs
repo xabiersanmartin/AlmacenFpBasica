@@ -490,23 +490,24 @@ namespace CapaAcceso
         /// <returns>Retorna una lista con los Productos, o null en su defecto</returns>
         public List<Producto> CargarProductos(out string msg)
         {
-            msg = "";
             List<Producto> productos = new List<Producto>();
+
             try
             {
                 using (var con = GetInstance())
                 {
 
-                    var query = "SELECT CodigoProducto, Descripcion, Precio, Stock, Categoria.NombreCategoria, SubCategoria.NombreSubCategoria FROM (( productos INNER JOIN subCategoria on productos.CodigoSubCategoria=SubCategoria.CodigoSubcategoria) INNER JOIN categoria on productos.CodigoCategoria=categoria.CodigoCategoria);";
+                    string query = "SELECT CodigoProducto, Descripcion, Precio, Stock, Categoria.NombreCategoria, SubCategoria.NombreSubCategoria FROM (( productos INNER JOIN subCategoria on productos.CodigoSubCategoria=SubCategoria.CodigoSubcategoria) INNER JOIN categoria on productos.CodigoCategoria=categoria.CodigoCategoria);";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    using (SQLiteDataReader lector = cmd.ExecuteReader())
-                    {
+                    SQLiteDataReader lector = cmd.ExecuteReader();
+                    
                         if (!lector.HasRows)
                         {
                             msg = "No hay Productos";
                             con.Close();
                             return productos;
                         }
+
                         while (lector.Read())
                         {
                             Producto producto = new Producto();
@@ -516,17 +517,22 @@ namespace CapaAcceso
                             producto.descripcion = lector["Descripion"].ToString();
                             producto.precio = int.Parse(lector["Precio"].ToString());
                             producto.stock = int.Parse(lector["Stock"].ToString());
+
                             productos.Add(producto);
                         }
-                    }
+                    
                     con.Close();
+                    lector.Close();
+                    msg = "";
+                    return productos;
                 }
             }
             catch (Exception e)
             {
                 msg = e.Message;
+                return productos;
             }
-            return productos;
+
         }
         /// <summary>
         /// Funcion que añade un producto nuevo a la base de datos.
