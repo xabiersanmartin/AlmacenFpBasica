@@ -514,7 +514,7 @@ namespace CapaAcceso
                             producto.codigoProducto = int.Parse(lector["CodigoProducto"].ToString());
                             producto.nombreCategoria = lector["NombreCategoria"].ToString();
                             producto.nombreSubCategoria = lector["NombreSubCategoria"].ToString();
-                            producto.descripcion = lector["Descripion"].ToString();
+                            producto.descripcion = lector["Descripcion"].ToString();
                             producto.precio = int.Parse(lector["Precio"].ToString());
                             producto.stock = int.Parse(lector["Stock"].ToString());
 
