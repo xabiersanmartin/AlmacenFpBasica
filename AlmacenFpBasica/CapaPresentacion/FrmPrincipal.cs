@@ -52,6 +52,8 @@ namespace CapaPresentacion
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            Program.Gestor.Up();
+
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
             cboTipo.DisplayMember = "NombreTipo";
@@ -126,6 +128,11 @@ namespace CapaPresentacion
         private void cboSubCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             verSC = cboSubCat.SelectedItem as Subcategoria;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

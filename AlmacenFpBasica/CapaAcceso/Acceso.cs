@@ -13,14 +13,14 @@ namespace CapaAcceso
     {
         #region Propiedades para la conexion de la base de datos
         private const string DBName = "almacen.db";
-        private const string SQLScript = @"..\script.sql";
+        private const string SQLScript = @"..\..\..\script.sql";
         private static bool IsDbRecentlyCreated = false;
         #endregion
 
         /// <summary>
         ///Metodo que crea la base de datos si no existe
         /// </summary>
-        public static void Up()
+        public void Up()
         {
             if (!File.Exists(Path.GetFullPath(DBName)))
             {

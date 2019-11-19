@@ -14,6 +14,11 @@ namespace CapaGestion
 
         string mensaje { get; set; }
 
+        public void Up()
+        {
+            nuevoacces.Up();
+        }
+
         #region Funciones para el admin
         public bool IniciarSesion(Adminstrador admin, out string mensaje)
         {
