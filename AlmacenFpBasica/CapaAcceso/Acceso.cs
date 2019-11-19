@@ -65,7 +65,6 @@ namespace CapaAcceso
             return db;
         }
 
-        //Hecho
         #region Funciones para el administrador
         /// <summary>
         /// Funcion usada para iniciar sesion

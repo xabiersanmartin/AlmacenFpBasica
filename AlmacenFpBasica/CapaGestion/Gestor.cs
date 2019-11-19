@@ -14,7 +14,6 @@ namespace CapaGestion
 
         string mensaje { get; set; }
 
-        //Hecho
         #region Funciones para el admin
         public bool IniciarSesion(Adminstrador admin, out string mensaje)
         {
