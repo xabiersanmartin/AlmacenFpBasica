@@ -60,6 +60,10 @@ namespace CapaGestion
         #endregion
 
         #region Funciones para los productos
+        public String ModificarProducto(Producto producto)
+        {
+            return nuevoacces.ModificarProducto(producto);
+        }
         public List<Producto> CargarProductos(out string mensaje)
         {
             return nuevoacces.CargarProductos(out mensaje);
