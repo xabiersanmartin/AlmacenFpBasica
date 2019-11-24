@@ -39,7 +39,7 @@ namespace CapaDatos
 
         public bool Equals(Adminstrador other)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // TODO Esto provooca un error de ejecución
         }
     }
 }

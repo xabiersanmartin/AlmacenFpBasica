@@ -13,6 +13,11 @@ namespace CapaPresentacion
 {
     public partial class FrmAdmin : Form
     {
+        // TODO No hay posibilidad de crear, solo de borrar
+        // TODO Nunca se llama a borrar sin pedir confirmación y en algunos casos avisando del riesgo. Si es categoría ¿qué pasa con sus productos? hay que avisar al usuario o usuaria de que además de borrar la categoría esta tiene tantos productos
+        // TODO Si aún confirma, se debe borrar todo, la categoría y sus descendientes
+
+        
         public string mensaje="";
         Producto eliminarP = new Producto();
         Categoria eliminarC = new Categoria();

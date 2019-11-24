@@ -11,6 +11,7 @@ namespace CapaAcceso
 {
     public class Acceso
     {
+        // TODO No se puede ejecutar. No 
         #region Propiedades para la conexion de la base de datos
         private const string DBName = "almacen.db";
         private const string SQLScript = @"..\..\..\script.sql";
@@ -20,7 +21,7 @@ namespace CapaAcceso
         /// <summary>
         ///Metodo que crea la base de datos si no existe
         /// </summary>
-        public void Up()
+        public void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos (y por tanto, tampoco no tiene sentido que sea público) 
         {
             if (!File.Exists(Path.GetFullPath(DBName)))
             {
@@ -28,11 +29,11 @@ namespace CapaAcceso
                 IsDbRecentlyCreated = true;
             }
 
-            using (var ctx = GetInstance())
+            using (var ctx = GetInstance()) // TODO No tiene sentido que haga esto si no hay que crearla. Esto debe ir en el if, y nni se necesita la variable bool
             {
                 if (IsDbRecentlyCreated)
                 {
-                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript)))
+                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
                     {
                         var query = "";
                         var line = "";
@@ -43,7 +44,7 @@ namespace CapaAcceso
 
                         using (var command = new SQLiteCommand(query, ctx))
                         {
-                            command.ExecuteNonQuery();
+                            command.ExecuteNonQuery();  // TODO No se ejecuta realmente, no crea las tablas
                         }
                     }
                     }
@@ -54,7 +55,7 @@ namespace CapaAcceso
         /// Metodo para abrir la conexion de la base de datos
         /// </summary>
         /// <returns></returns>
-        public static SQLiteConnection GetInstance()
+        public static SQLiteConnection GetInstance() // TODO Si da error de ejecución, SE ROMPE --> No debería ocurrir, sino que el o la usuaria debería enterarse que hay un error con un mensaje. Y de nuevo no es competencia de ninguna otra capa. Solo esta debe conocer este método
         {
             var db = new SQLiteConnection(
                 string.Format("Data Source={0};Version=3;", DBName)
@@ -96,7 +97,7 @@ namespace CapaAcceso
                     }
                     con.Close();
                 }
-                if (newAdmin.Equals(admin))
+                if (newAdmin.Equals(admin)) // TODO ¡¡¡Equals solo tiene instrucción throw!!!!
                 {
                     msg = "Se ha iniciado sesión correctamente";
                     exito= true;
@@ -306,7 +307,7 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="deleteCategoria"></param>
         /// <returns>Retorina un mensaje con "" si todo ha ido bien</returns>
-        public string EliminarCategoria(Categoria deleteCategoria)
+        public string EliminarCategoria(Categoria deleteCategoria) // TODO No se puede borrar una categoría y dejar sus productos
         {
             try
             {
