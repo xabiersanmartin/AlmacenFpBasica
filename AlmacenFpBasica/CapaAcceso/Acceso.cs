@@ -21,7 +21,7 @@ namespace CapaAcceso
         /// <summary>
         ///Metodo que crea la base de datos si no existe
         /// </summary>
-        public void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos (y por tanto, tampoco no tiene sentido que sea público) 
+        private void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos 
         {
             if (!File.Exists(Path.GetFullPath(DBName)))
             {
