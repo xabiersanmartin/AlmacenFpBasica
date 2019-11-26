@@ -97,7 +97,7 @@ namespace CapaAcceso
                     }
                     con.Close();
                 }
-                if (newAdmin.Equals(admin)) // TODO ¡¡¡Equals solo tiene instrucción throw!!!!
+                if (newAdmin.Equals(admin))
                 {
                     msg = "Se ha iniciado sesión correctamente";
                     exito= true;
