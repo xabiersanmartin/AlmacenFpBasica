@@ -33,7 +33,7 @@ namespace CapaPresentacion
         {
             if (txtUser.Text == "" || txtContrasena.Text == "")
             {
-                MessageBox.Show("No deje ningún campo vacío por favor");
+                MessageBox.Show("No deje ningún campo vacio por favor");
                 return;
 
             }
