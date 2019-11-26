@@ -15,7 +15,6 @@ namespace CapaAcceso
         #region Propiedades para la conexion de la base de datos
         private const string DBName = "almacen.db";
         private const string SQLScript = @"..\..\..\script.sql";
-        private static bool IsDbRecentlyCreated = false;
         #endregion
 
         /// <summary>
@@ -26,13 +25,8 @@ namespace CapaAcceso
             if (!File.Exists(Path.GetFullPath(DBName)))
             {
                 SQLiteConnection.CreateFile(DBName);
-                IsDbRecentlyCreated = true;
-            }
-
-
-                if (IsDbRecentlyCreated)
-                {
-                    using (var ctx = GetInstance()) // TODO No se necesita la variable bool
+            }else{
+                    using (var ctx = GetInstance())
                     {
                     using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
                         {
