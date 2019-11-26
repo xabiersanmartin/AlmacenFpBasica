@@ -29,24 +29,25 @@ namespace CapaAcceso
                 IsDbRecentlyCreated = true;
             }
 
-            using (var ctx = GetInstance()) // TODO No tiene sentido que haga esto si no hay que crearla. Esto debe ir en el if, y ni se necesita la variable bool
-            {
+
                 if (IsDbRecentlyCreated)
                 {
-                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
+                    using (var ctx = GetInstance()) // TODO No se necesita la variable bool
                     {
-                        var query = "";
-                        var line = "";
-                        while ((line = reader.ReadLine()) != null)
+                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
                         {
-                            query += line;
-                        }
+                            var query = "";
+                            var line = "";
+                            while ((line = reader.ReadLine()) != null)
+                            {
+                                query += line;
+                            }
 
-                        using (var command = new SQLiteCommand(query, ctx))
-                        {
-                            command.ExecuteNonQuery();  // TODO No se ejecuta realmente, no crea las tablas
+                            using (var command = new SQLiteCommand(query, ctx))
+                            {
+                                command.ExecuteNonQuery();  // TODO No se ejecuta realmente, no crea las tablas
+                            }
                         }
-                    }
                     }
                 }
             }
