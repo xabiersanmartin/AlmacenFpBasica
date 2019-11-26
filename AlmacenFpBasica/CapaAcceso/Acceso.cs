@@ -29,7 +29,7 @@ namespace CapaAcceso
                 IsDbRecentlyCreated = true;
             }
 
-            using (var ctx = GetInstance()) // TODO No tiene sentido que haga esto si no hay que crearla. Esto debe ir en el if, y nni se necesita la variable bool
+            using (var ctx = GetInstance()) // TODO No tiene sentido que haga esto si no hay que crearla. Esto debe ir en el if, y ni se necesita la variable bool
             {
                 if (IsDbRecentlyCreated)
                 {
