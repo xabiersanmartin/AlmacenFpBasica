@@ -20,7 +20,7 @@ namespace CapaAcceso
         /// <summary>
         ///Metodo que crea la base de datos si no existe
         /// </summary>
-        private void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos 
+        public void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos 
         {
             if (!File.Exists(Path.GetFullPath(DBName)))
             {
@@ -579,7 +579,7 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="producto"></param>
         /// <returns>Retorna un mensaje con "" si todo ha ido bien, de lo contrario nos retorna un mensaje con el error.</returns>
-        public String ModificarProducto(Producto producto)
+        public String ModificarProducto(string codigoProducto,string descripcion, string stock, string precio)
         {
             try
             {
@@ -587,11 +587,11 @@ namespace CapaAcceso
                 {
                     var query = "UPDATE productos Set Descripcion = @Descripcion, Stock = @Stock, Precio = @Precio WHERE CodigoProducto = @CodigoProducto";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Descripcion", producto.descripcion);
-                    cmd.Parameters.AddWithValue("@Stock", producto.stock);
-                    cmd.Parameters.AddWithValue("@Precio", producto.precio);
+                    cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                    cmd.Parameters.AddWithValue("@Stock", stock);
+                    cmd.Parameters.AddWithValue("@Precio", precio);
 
-                    cmd.Parameters.AddWithValue("@CodigoProducto", producto.codigoProducto);
+                    cmd.Parameters.AddWithValue("@CodigoProducto", codigoProducto);
 
                     cmd.ExecuteNonQuery();
                     con.Close();

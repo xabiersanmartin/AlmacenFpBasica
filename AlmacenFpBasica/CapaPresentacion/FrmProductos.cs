@@ -17,7 +17,7 @@ namespace CapaPresentacion
         //TODO poner aquí los campos "nombreCategoria" y "nombreSubCategoria" 
 
         //Producto actual del dataGridView
-        Producto producto;
+        Producto productoActual;
 
         public List<Producto> prods = new List<Producto>();
         public bool comprob;
@@ -35,6 +35,11 @@ namespace CapaPresentacion
         private void Productos_Load(object sender, EventArgs e)
         {
             cargarDataGridView();
+
+            //Ocultar columnas del data grid view
+            dgvProductos.Columns[0].Visible = false;//Ocultar Codigo Producto
+            dgvProductos.Columns[1].Visible = false;//Ocultar Codigo Categoria
+            dgvProductos.Columns[3].Visible = false;//Ocultar Codigo SubCategoria
         }
 
         private void cargarDataGridView()
@@ -48,29 +53,27 @@ namespace CapaPresentacion
                 dgvProductos.DataSource = prods;
             }
         }
-
-
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Ponemos visibles el groupBoxModificar y el btnDelete
+ //Ponemos visibles el groupBoxModificar y el btnDelete
+            if (!groupBoxModificar.Enabled) { 
             groupBoxModificar.Enabled = true;
             btnDelete.Enabled = true;
-
+            }
+            dgvProductos.Rows[e.RowIndex].Selected = true;
             //Ponemos los textos correspondientes
-            producto = (Producto)dgvProductos.CurrentRow.DataBoundItem;
-            txtDelete.Text = "Eliminar el producto con descripción " + producto.descripcion+" ?";
-            txtCodigoProducto.Text = producto.codigoProducto.ToString();
-            txtCodigoCategoria.Text = producto.codigoCategoria.ToString();
-            txtCodigoSubcategoria.Text = producto.codigoSubcategoria.ToString();
-            txtDescripcion.Text = producto.descripcion.ToString();
-            txtStock.Text = producto.stock.ToString();
-            txtPrecio.Text = producto.precio.ToString();
-
+            productoActual = (Producto)dgvProductos.CurrentRow.DataBoundItem;
+            txtDelete.Text = "Eliminar el producto con descripción: " + productoActual.descripcion+" ?";
+            txtDescripcion.Text = productoActual.descripcion.ToString();
+            txtStock.Text = productoActual.stock.ToString();
+            txtPrecio.Text = productoActual.precio.ToString();
         }
+
+     
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string mens = Program.Gestor.EliminarProducto(producto);
+            string mens = Program.Gestor.EliminarProducto(productoActual);
 
             if (mens != "")
             {
@@ -87,7 +90,7 @@ namespace CapaPresentacion
         {
             try
             {
-                string mens = Program.Gestor.ModificarProducto(producto);
+                string mens = Program.Gestor.ModificarProducto(productoActual.codigoProducto.ToString(),txtDescripcion.Text,txtStock.Text,txtPrecio.Text);
 
                 if (mens != "")
                 {
@@ -95,6 +98,11 @@ namespace CapaPresentacion
                 }
                 else
                 {
+                    txtCategoria.Text = "";
+                    txtSubcategoria.Text = "";
+                    txtPrecio.Text = "";
+                    txtStock.Text = "";
+                    txtDescripcion.Text = "";
                     txtDelete.Text = "";
                     cargarDataGridView();
                 }
@@ -119,5 +127,7 @@ namespace CapaPresentacion
                 MessageBox.Show(mensaje);
             }
         }
+
+    
     }
 }

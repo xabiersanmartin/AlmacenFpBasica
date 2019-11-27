@@ -97,23 +97,6 @@ namespace CapaPresentacion
             producto.Show();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-           String msg;
-           productos = Program.Gestor.BuscarProductosPorDescripcion(txtDescripcionBuscar.Text,out msg);
-            if (msg!="")
-            {
-                MessageBox.Show(msg);
-            }
-            else
-            {
-                FrmProductos frm = new FrmProductos();
-                frm.prods = productos;
-                frm.comprob = false;
-                frm.Show();
-            }
-        }
-
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             verT = cboTipo.SelectedItem as Tipo;           
