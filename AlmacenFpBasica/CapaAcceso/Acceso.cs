@@ -52,13 +52,24 @@ namespace CapaAcceso
         /// <returns></returns>
         public static SQLiteConnection GetInstance() // TODO Si da error de ejecución, SE ROMPE --> No debería ocurrir, sino que el o la usuaria debería enterarse que hay un error con un mensaje. Y de nuevo no es competencia de ninguna otra capa. Solo esta debe conocer este método
         {
-            var db = new SQLiteConnection(
+            try
+            {
+                var db = new SQLiteConnection(
                 string.Format("Data Source={0};Version=3;", DBName)
-            );
+                );
 
-            db.Open();
+                db.Open();
 
-            return db;
+                return db;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+            
+
         }
 
         #region Funciones para el administrador
