@@ -53,6 +53,10 @@ namespace CapaPresentacion
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             Program.Gestor.Up();
+            Empresa EmpresaCargar = new Empresa();
+            EmpresaCargar = Program.Gestor.CargarEmpresa(out string mensaje);
+            pcbEmpresa.ImageLocation=EmpresaCargar.logo;
+            lblNombreEmpresa.Text = EmpresaCargar.nombre;
 
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
@@ -116,6 +120,11 @@ namespace CapaPresentacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

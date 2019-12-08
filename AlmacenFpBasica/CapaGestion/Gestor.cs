@@ -81,5 +81,11 @@ namespace CapaGestion
             return nuevoacces.BuscarProductosPorDescripcion(descripcion, out mensaje);
         }
         #endregion
+
+        public Empresa CargarEmpresa(out string mensaje)
+        {
+            return nuevoacces.CargarEmpresa(out mensaje);
+        }
+
     }
 }
