@@ -33,7 +33,7 @@ namespace CapaPresentacion
         {
             if (txtUser.Text == "" || txtContrasena.Text == "")
             {
-                MessageBox.Show("No deje ningún campo vacío por favor");
+                MessageBox.Show("No deje ningún campo vacio por favor");
                 return;
 
             }
@@ -53,6 +53,10 @@ namespace CapaPresentacion
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             Program.Gestor.Up();
+            Empresa EmpresaCargar = new Empresa();
+            EmpresaCargar = Program.Gestor.CargarEmpresa(out string mensaje);
+            pcbEmpresa.ImageLocation=EmpresaCargar.logo;
+            lblNombreEmpresa.Text = EmpresaCargar.nombre;
 
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
@@ -97,23 +101,6 @@ namespace CapaPresentacion
             producto.Show();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-           String msg;
-           productos = Program.Gestor.BuscarProductosPorDescripcion(txtDescripcionBuscar.Text,out msg);
-            if (msg!="")
-            {
-                MessageBox.Show(msg);
-            }
-            else
-            {
-                FrmProductos frm = new FrmProductos();
-                frm.prods = productos;
-                frm.comprob = false;
-                frm.Show();
-            }
-        }
-
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             verT = cboTipo.SelectedItem as Tipo;           
@@ -133,6 +120,11 @@ namespace CapaPresentacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

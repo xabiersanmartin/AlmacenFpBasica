@@ -15,38 +15,33 @@ namespace CapaAcceso
         #region Propiedades para la conexion de la base de datos
         private const string DBName = "almacen.db";
         private const string SQLScript = @"..\..\..\script.sql";
-        private static bool IsDbRecentlyCreated = false;
         #endregion
 
         /// <summary>
         ///Metodo que crea la base de datos si no existe
         /// </summary>
-        public void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos (y por tanto, tampoco no tiene sentido que sea público) 
+        public void Up() // TODO Este nombre no dice nada de lo que  hace el método. Y el problema de la creación o no de la BD no debe llegar a la capa de presentación, es único y exclusivo problema de la capa de Daos 
         {
             if (!File.Exists(Path.GetFullPath(DBName)))
             {
                 SQLiteConnection.CreateFile(DBName);
-                IsDbRecentlyCreated = true;
-            }
-
-            using (var ctx = GetInstance()) // TODO No tiene sentido que haga esto si no hay que crearla. Esto debe ir en el if, y nni se necesita la variable bool
-            {
-                if (IsDbRecentlyCreated)
-                {
-                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
+            }else{
+                    using (var ctx = GetInstance())
                     {
-                        var query = "";
-                        var line = "";
-                        while ((line = reader.ReadLine()) != null)
+                    using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
                         {
-                            query += line;
-                        }
+                            var query = "";
+                            var line = "";
+                            while ((line = reader.ReadLine()) != null)
+                            {
+                                query += line;
+                            }
 
-                        using (var command = new SQLiteCommand(query, ctx))
-                        {
-                            command.ExecuteNonQuery();  // TODO No se ejecuta realmente, no crea las tablas
+                            using (var command = new SQLiteCommand(query, ctx))
+                            {
+                                command.ExecuteNonQuery();  // TODO No se ejecuta realmente, no crea las tablas
+                            }
                         }
-                    }
                     }
                 }
             }
@@ -57,13 +52,24 @@ namespace CapaAcceso
         /// <returns></returns>
         public static SQLiteConnection GetInstance() // TODO Si da error de ejecución, SE ROMPE --> No debería ocurrir, sino que el o la usuaria debería enterarse que hay un error con un mensaje. Y de nuevo no es competencia de ninguna otra capa. Solo esta debe conocer este método
         {
-            var db = new SQLiteConnection(
+            try
+            {
+                var db = new SQLiteConnection(
                 string.Format("Data Source={0};Version=3;", DBName)
-            );
+                );
 
-            db.Open();
+                db.Open();
 
-            return db;
+                return db;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+            
+
         }
 
         #region Funciones para el administrador
@@ -97,7 +103,7 @@ namespace CapaAcceso
                     }
                     con.Close();
                 }
-                if (newAdmin.Equals(admin)) // TODO ¡¡¡Equals solo tiene instrucción throw!!!!
+                if (newAdmin.Equals(admin))
                 {
                     msg = "Se ha iniciado sesión correctamente";
                     exito= true;
@@ -584,7 +590,7 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="producto"></param>
         /// <returns>Retorna un mensaje con "" si todo ha ido bien, de lo contrario nos retorna un mensaje con el error.</returns>
-        public String ModificarProducto(Producto producto)
+        public String ModificarProducto(string codigoProducto,string descripcion, string stock, string precio)
         {
             try
             {
@@ -592,11 +598,11 @@ namespace CapaAcceso
                 {
                     var query = "UPDATE productos Set Descripcion = @Descripcion, Stock = @Stock, Precio = @Precio WHERE CodigoProducto = @CodigoProducto";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Descripcion", producto.descripcion);
-                    cmd.Parameters.AddWithValue("@Stock", producto.stock);
-                    cmd.Parameters.AddWithValue("@Precio", producto.precio);
+                    cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                    cmd.Parameters.AddWithValue("@Stock", stock);
+                    cmd.Parameters.AddWithValue("@Precio", precio);
 
-                    cmd.Parameters.AddWithValue("@CodigoProducto", producto.codigoProducto);
+                    cmd.Parameters.AddWithValue("@CodigoProducto", codigoProducto);
 
                     cmd.ExecuteNonQuery();
                     con.Close();

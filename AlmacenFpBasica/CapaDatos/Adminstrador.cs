@@ -24,22 +24,18 @@ namespace CapaDatos
 
         public override bool Equals(object obj)
         {
-            return obj is Adminstrador adminstrador &&
-                   nombre.ToUpper() == adminstrador.nombre.ToUpper() &&
-                   password == adminstrador.password;
-        }
-
-        public override int GetHashCode()
-        {
-            var hashCode = -686875592;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nombre);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(password);
-            return hashCode;
+            return Equals(obj as Adminstrador);
         }
 
         public bool Equals(Adminstrador other)
         {
-            throw new NotImplementedException(); // TODO Esto provooca un error de ejecución
+            return other != null &&
+                   nombre == other.nombre;
+        }
+
+        public override int GetHashCode()
+        {
+            return -1597784800 + EqualityComparer<string>.Default.GetHashCode(nombre);
         }
     }
 }
