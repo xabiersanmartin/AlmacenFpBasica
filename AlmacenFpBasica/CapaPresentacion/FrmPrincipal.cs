@@ -58,19 +58,20 @@ namespace CapaPresentacion
             pcbEmpresa.ImageLocation=EmpresaCargar.logo;
             lblNombreEmpresa.Text = EmpresaCargar.nombre;
 
+            //TODO Reutilizar código
+            //TODO Hacer que se actualicen los cbo cuando se elimina una categoria/subcategoria
+            //TODO Cargar los cbo de mánera dinamica (El usuario seleccióna una categoría y en funcíon de eso, se cargan las subcategorías)
+
             cboTipo.Items.Clear();
             cboTipo.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
             cboTipo.DisplayMember = "NombreTipo";
-
 
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
             cboCat.DisplayMember = "NombreCategoria";
 
-
-
             cboSubCat.Items.Clear();
-            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
+            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());//TODO CargarSubCategoria No va
             cboSubCat.DisplayMember = "NombreSubCategoria";
 
         }
@@ -108,7 +109,6 @@ namespace CapaPresentacion
 
         private void cboCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
             verC = cboCat.SelectedItem as Categoria;
         }
 
@@ -122,9 +122,5 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
