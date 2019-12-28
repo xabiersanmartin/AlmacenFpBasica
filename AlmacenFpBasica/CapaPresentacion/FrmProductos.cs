@@ -13,9 +13,6 @@ namespace CapaPresentacion
 {
     public partial class FrmProductos : Form
     {
-        //TODO La base de datos no tiene los campos "nombreCategoria" y "nombreSubCategoria"
-        //TODO poner aquí los campos "nombreCategoria" y "nombreSubCategoria" 
-
         //Producto actual del dataGridView
         Producto productoActual;
 
@@ -55,7 +52,7 @@ namespace CapaPresentacion
         }
     private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
- //Ponemos visibles el groupBoxModificar y el btnDelete
+            //Ponemos visibles el groupBoxModificar y el btnDelete
             if (!groupBoxModificar.Enabled) { 
             groupBoxModificar.Enabled = true;
             btnDelete.Enabled = true;
