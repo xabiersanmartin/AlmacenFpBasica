@@ -52,11 +52,16 @@ namespace CapaPresentacion
         }
     private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+
             //Ponemos visibles el groupBoxModificar y el btnDelete
-            if (!groupBoxModificar.Enabled) { 
-            groupBoxModificar.Enabled = true;
-            btnDelete.Enabled = true;
+            if (!groupBoxModificar.Enabled) 
+            { 
+                groupBoxModificar.Enabled = true;
+                btnDelete.Enabled = true;
             }
+
             dgvProductos.Rows[e.RowIndex].Selected = true;
             //Ponemos los textos correspondientes
             productoActual = (Producto)dgvProductos.CurrentRow.DataBoundItem;
@@ -64,6 +69,9 @@ namespace CapaPresentacion
             txtDescripcion.Text = productoActual.descripcion.ToString();
             txtStock.Text = productoActual.stock.ToString();
             txtPrecio.Text = productoActual.precio.ToString();
+            txtCategoria.Text = productoActual.nombreCategoria;
+            txtSubcategoria.Text = productoActual.nombreSubCategoria;
+            }
         }
 
      
@@ -125,6 +133,5 @@ namespace CapaPresentacion
             }
         }
 
-    
     }
 }

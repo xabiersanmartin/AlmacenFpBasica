@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.grbAdmin = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnVaciarZonaAdmin = new System.Windows.Forms.Button();
             this.btnAcceder = new System.Windows.Forms.Button();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtContrasena = new System.Windows.Forms.TextBox();
@@ -37,7 +37,7 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVaciarAñadirProducto = new System.Windows.Forms.Button();
             this.btnAnadir = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             // 
             // grbAdmin
             // 
-            this.grbAdmin.Controls.Add(this.button2);
+            this.grbAdmin.Controls.Add(this.btnVaciarZonaAdmin);
             this.grbAdmin.Controls.Add(this.btnAcceder);
             this.grbAdmin.Controls.Add(this.lblPassword);
             this.grbAdmin.Controls.Add(this.txtContrasena);
@@ -76,16 +76,17 @@
             this.grbAdmin.Text = "Zona Administrador";
             this.grbAdmin.Enter += new System.EventHandler(this.grbAdmin_Enter);
             // 
-            // button2
+            // btnVaciarZonaAdmin
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(105, 117);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 27);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Vaciar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnVaciarZonaAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnVaciarZonaAdmin.Location = new System.Drawing.Point(105, 117);
+            this.btnVaciarZonaAdmin.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVaciarZonaAdmin.Name = "btnVaciarZonaAdmin";
+            this.btnVaciarZonaAdmin.Size = new System.Drawing.Size(86, 27);
+            this.btnVaciarZonaAdmin.TabIndex = 14;
+            this.btnVaciarZonaAdmin.Text = "Vaciar";
+            this.btnVaciarZonaAdmin.UseVisualStyleBackColor = true;
+            this.btnVaciarZonaAdmin.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnAcceder
             // 
@@ -147,7 +148,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnVaciarAñadirProducto);
             this.groupBox1.Controls.Add(this.btnAnadir);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtDescripcion);
@@ -171,16 +172,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Añadir Producto";
             // 
-            // button1
+            // btnVaciarAñadirProducto
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(104, 306);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 27);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "&Vaciar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnVaciarAñadirProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVaciarAñadirProducto.Location = new System.Drawing.Point(104, 306);
+            this.btnVaciarAñadirProducto.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVaciarAñadirProducto.Name = "btnVaciarAñadirProducto";
+            this.btnVaciarAñadirProducto.Size = new System.Drawing.Size(86, 27);
+            this.btnVaciarAñadirProducto.TabIndex = 13;
+            this.btnVaciarAñadirProducto.Text = "&Vaciar";
+            this.btnVaciarAñadirProducto.UseVisualStyleBackColor = true;
+            this.btnVaciarAñadirProducto.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnAnadir
             // 
@@ -400,8 +402,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnVerProductos;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVaciarZonaAdmin;
+        private System.Windows.Forms.Button btnVaciarAñadirProducto;
         private System.Windows.Forms.PictureBox pcbEmpresa;
         private System.Windows.Forms.Label lblNombreEmpresa;
     }

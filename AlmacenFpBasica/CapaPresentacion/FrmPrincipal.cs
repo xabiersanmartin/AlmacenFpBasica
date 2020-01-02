@@ -39,7 +39,10 @@ namespace CapaPresentacion
             }
             Adminstrador admin = new Adminstrador(txtUser.Text, txtContrasena.Text);
             bool respuesta = Program.Gestor.IniciarSesion(admin, out mensaje);
-            MessageBox.Show(mensaje);
+            if (mensaje!="")
+            {
+                MessageBox.Show(mensaje);
+            }
             if (respuesta==true)
             {
                 FrmAdmin frmabrir = new FrmAdmin();
@@ -78,7 +81,6 @@ namespace CapaPresentacion
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
-
             {
                 try
                 {
@@ -122,5 +124,20 @@ namespace CapaPresentacion
             this.Close();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            cboTipo.SelectedItem = null;
+            cboCat.SelectedItem = null;
+            cboSubCat.SelectedItem = null;
+            txtCantidad.Text = "";
+            txtPrecio.Text = "";
+            txtDescripcion.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtUser.Text = "";
+            txtContrasena.Text = "";
+        }
     }
 }

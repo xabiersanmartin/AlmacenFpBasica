@@ -628,15 +628,11 @@ namespace CapaAcceso
                     var query = "DELETE FROM productos WHERE CodigoProducto = @pod";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     cmd.Parameters.AddWithValue("@pod", deleteProducto.codigoProducto);
-                    string msg = (string)cmd.ExecuteScalar();
-
-                    if (String.IsNullOrWhiteSpace(msg))
+                    int cntBorrados = (int)cmd.ExecuteNonQuery();
+                    if (cntBorrados != 1)
                     {
-                        return $"El producto que intentas eliminar no existe";
+                        return $"No se ha podido borrar el producto";
                     }
-
-                    cmd.ExecuteNonQuery();
-
                     con.Close();
                 }
             }
@@ -644,7 +640,7 @@ namespace CapaAcceso
             {
 
                 return e.Message;
-                
+
             }
             return "";
         }
