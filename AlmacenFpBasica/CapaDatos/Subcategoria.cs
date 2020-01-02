@@ -16,7 +16,10 @@ namespace CapaDatos
             this.codSubCategoria = codSubCategoria;
             this.nombreSubCategoria = nombreSubCategoria;
         }
-
+        public Subcategoria(string nombreSubCategoria)
+        {
+            this.nombreSubCategoria = nombreSubCategoria;
+        }
         public Subcategoria()
         {
         }

@@ -46,6 +46,10 @@ namespace CapaGestion
         {
             return nuevoacces.EliminarCategoria(categoria);
         }
+        public string AñadirCategoria(Categoria categoria,Tipo tipo)
+        {
+            return nuevoacces.AñadirCategoria(categoria, tipo);
+        }
         #endregion
 
         #region Funciones para las subcategorias
@@ -56,6 +60,10 @@ namespace CapaGestion
         public string EliminarSubCategoria(Subcategoria subcategoria)
         {
             return nuevoacces.EliminarSubCategoria(subcategoria);
+        }
+        public string AñadirSubCategoria(Subcategoria SubCategoria,Categoria categoria)
+        {
+            return nuevoacces.AñadirSubCategoria(SubCategoria, categoria);
         }
         #endregion
 

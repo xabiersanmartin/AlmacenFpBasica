@@ -74,8 +74,16 @@ namespace CapaPresentacion
             cboCat.DisplayMember = "NombreCategoria";
 
             cboSubCat.Items.Clear();
-            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());//TODO CargarSubCategoria No va
+            cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
             cboSubCat.DisplayMember = "NombreSubCategoria";
+
+            cboTipoAñadirCategoria.Items.Clear();
+            cboTipoAñadirCategoria.Items.AddRange(Program.Gestor.CargarTipos(out mensaje).ToArray());
+            cboTipoAñadirCategoria.DisplayMember = "NombreTipo";
+
+            cboCatAñadirSubCategoria.Items.Clear();
+            cboCatAñadirSubCategoria.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
+            cboCatAñadirSubCategoria.DisplayMember = "NombreCategoria";
 
         }
 
@@ -86,7 +94,14 @@ namespace CapaPresentacion
                 {
                     Producto nuevoProducto = new Producto(verC.codCategoria, verSC.codSubCategoria, txtDescripcion.Text, int.Parse(txtCantidad.Text), decimal.Parse(txtPrecio.Text));
                     mensaje = Program.Gestor.AnadirProducto(nuevoProducto);
-                    MessageBox.Show(mensaje);
+                    if (mensaje!="")
+                    {
+                        MessageBox.Show(mensaje);
+                    }
+                    else
+                    {
+                        vaciarCamposAñadirProducto();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +139,7 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void vaciarCamposAñadirProducto()
         {
             cboTipo.SelectedItem = null;
             cboCat.SelectedItem = null;
@@ -133,11 +148,84 @@ namespace CapaPresentacion
             txtPrecio.Text = "";
             txtDescripcion.Text = "";
         }
-
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            vaciarCamposAñadirProducto();
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             txtUser.Text = "";
             txtContrasena.Text = "";
+        }
+
+        private void btnVaciarCategoria_Click(object sender, EventArgs e)
+        {
+            cboTipoAñadirCategoria.SelectedItem = null;
+            txtAñadirCategoria.Text = "";
+        }
+
+        private void btnVaciarSubCategoria_Click(object sender, EventArgs e)
+        {
+            cboCatAñadirSubCategoria.SelectedItem = null;
+            txtAñadirSubCategoria.Text = "";
+        }
+
+        private void btnAñadirCategoria_Click(object sender, EventArgs e)
+        {
+            {
+                try
+                {
+                    Categoria nuevaCategoria= new Categoria(txtAñadirCategoria.Text);
+                    mensaje = Program.Gestor.AñadirCategoria(nuevaCategoria, (Tipo)cboTipoAñadirCategoria.SelectedItem);
+                    if (mensaje != "")
+                    {
+                        MessageBox.Show(mensaje);
+                    }
+                    else
+                    {
+                        txtAñadirCategoria.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+        }
+
+        private void btnAñadirSubCategoria_Click(object sender, EventArgs e)
+        {
+            {
+                try
+                {
+                    Subcategoria nuevaSubCategoria = new Subcategoria(txtAñadirSubCategoria.Text);
+                    mensaje = Program.Gestor.AñadirSubCategoria(nuevaSubCategoria,(Categoria)cboCatAñadirSubCategoria.SelectedItem);
+                    if (mensaje != "")
+                    {
+                        MessageBox.Show(mensaje);
+                    }
+                    else
+                    {
+                        txtAñadirCategoria.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+        }
+
+        private void txtAñadirSubCategoria_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

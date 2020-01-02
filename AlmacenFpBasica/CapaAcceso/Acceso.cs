@@ -105,7 +105,7 @@ namespace CapaAcceso
                 }
                 if (newAdmin.Equals(admin))
                 {
-                    msg = "Se ha iniciado sesión correctamente";
+                    msg = "";
                     exito= true;
                 }
                 else {
@@ -246,7 +246,7 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="categoria">Categoria que se desea añadir</param>
         /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
-        public string AñadirCategoria(Categoria categoria)
+        public string AñadirCategoria(Categoria categoria,Tipo tipo)
         {
             
             try
@@ -263,10 +263,12 @@ namespace CapaAcceso
                         return $"Ya existe la categoria";
                     }
 
-                    string insert = "Insert INTO categoria(NombreCategoria) values (@NombreCategoria)";//No añadimos el codigo por ser autoincrement
+                    string insert = "Insert INTO categoria(NombreCategoria, CodigoTipo) values (@NombreCategoria, @CodigoTipo)";//No añadimos el codigo por ser autoincrement
                     cmd.CommandText = insert;
                     cmd.Parameters.AddWithValue("@NombreCategoria", categoria.nombreCategoria);
-                                        
+                    cmd.Parameters.AddWithValue("@CodigoTipo", tipo.CodTipo);
+
+
                     int numFilas = cmd.ExecuteNonQuery();
 
                     if (numFilas == 0)
@@ -390,15 +392,14 @@ namespace CapaAcceso
         /// </summary>
         /// <param name="categoria">Categoria que se desea añadir</param>
         /// <returns>Retorna "" si todo ha ido bien, o un mensaje de error en su defecto</returns>
-        public string AñadirSubCategoria(Subcategoria subcategoria)
+        public string AñadirSubCategoria(Subcategoria subcategoria, Categoria categoria)
         {
-           
             try
             {
                 using (var con = GetInstance())
                 {
 
-                    var query = "SELECT * FROM subcategoria where CodigoSubCategoria = @cod";
+                    var query = "SELECT * FROM subcategoria where codigoSubCategoria = @cod";
                     SQLiteCommand cmd = new SQLiteCommand(query, con);
                     cmd.Parameters.AddWithValue("@cod", subcategoria.codSubCategoria);
                     string mens = (string)cmd.ExecuteScalar();
@@ -407,9 +408,10 @@ namespace CapaAcceso
                         return $"Ya existe la SubCategoria";
                     }
 
-                    string insert = "Insert INTO subcategoria(NombreSubCategoria) values (@NombreSubCategoria)";//No añadimos el codigo por ser autoincrement
+                    string insert = "Insert INTO subcategoria(NombreSubCategoria, CodigoCategoria) values (@NombreSubCategoria, @CodigoCategoria)";
                     cmd.CommandText = insert;
                     cmd.Parameters.AddWithValue("@NombreSubCategoria", subcategoria.nombreSubCategoria);
+                    cmd.Parameters.AddWithValue("@CodigoCategoria", categoria.codCategoria);
 
                     int numFilas = cmd.ExecuteNonQuery();
 

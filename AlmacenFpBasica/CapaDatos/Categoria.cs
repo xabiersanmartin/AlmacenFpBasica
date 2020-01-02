@@ -10,15 +10,17 @@ namespace CapaDatos
     {
         public int codCategoria { get; set; }
         public string nombreCategoria { get; set; }
-
-        public Categoria(int codCategoria, string nombre)
+        public Categoria()
+        {
+        }
+        public Categoria( string nombreCategoria)
+        {
+            this.nombreCategoria = nombreCategoria;
+        }
+        public Categoria(int codCategoria, string nombreCategoria)
         {
             this.codCategoria = codCategoria;
             this.nombreCategoria = nombreCategoria;
-        }
-
-        public Categoria()
-        {
         }
 
         public override bool Equals(object obj)

@@ -50,7 +50,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(93, 120);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(84, 26);
             this.btnAceptar.TabIndex = 0;
@@ -64,9 +64,9 @@
             this.groupBox1.Controls.Add(this.txtPass);
             this.groupBox1.Controls.Add(this.btnAceptar);
             this.groupBox1.Location = new System.Drawing.Point(333, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(266, 164);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -86,7 +86,7 @@
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(122, 80);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(2);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(107, 20);
             this.txtPass.TabIndex = 1;
@@ -103,9 +103,9 @@
             this.groupBox2.Controls.Add(this.cboCat);
             this.groupBox2.Controls.Add(this.cboProd);
             this.groupBox2.Location = new System.Drawing.Point(16, 16);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(296, 164);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
@@ -114,7 +114,7 @@
             // btnSubCat
             // 
             this.btnSubCat.Location = new System.Drawing.Point(225, 120);
-            this.btnSubCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubCat.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubCat.Name = "btnSubCat";
             this.btnSubCat.Size = new System.Drawing.Size(56, 19);
             this.btnSubCat.TabIndex = 8;
@@ -125,7 +125,7 @@
             // btnCat
             // 
             this.btnCat.Location = new System.Drawing.Point(225, 81);
-            this.btnCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCat.Margin = new System.Windows.Forms.Padding(2);
             this.btnCat.Name = "btnCat";
             this.btnCat.Size = new System.Drawing.Size(56, 19);
             this.btnCat.TabIndex = 7;
@@ -136,7 +136,7 @@
             // btnProd
             // 
             this.btnProd.Location = new System.Drawing.Point(225, 45);
-            this.btnProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProd.Margin = new System.Windows.Forms.Padding(2);
             this.btnProd.Name = "btnProd";
             this.btnProd.Size = new System.Drawing.Size(56, 19);
             this.btnProd.TabIndex = 6;
@@ -178,7 +178,7 @@
             // 
             this.cboSubCat.FormattingEnabled = true;
             this.cboSubCat.Location = new System.Drawing.Point(97, 120);
-            this.cboSubCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboSubCat.Margin = new System.Windows.Forms.Padding(2);
             this.cboSubCat.Name = "cboSubCat";
             this.cboSubCat.Size = new System.Drawing.Size(118, 21);
             this.cboSubCat.TabIndex = 2;
@@ -187,7 +187,7 @@
             // 
             this.cboCat.FormattingEnabled = true;
             this.cboCat.Location = new System.Drawing.Point(97, 80);
-            this.cboCat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCat.Margin = new System.Windows.Forms.Padding(2);
             this.cboCat.Name = "cboCat";
             this.cboCat.Size = new System.Drawing.Size(118, 21);
             this.cboCat.TabIndex = 1;
@@ -196,7 +196,7 @@
             // 
             this.cboProd.FormattingEnabled = true;
             this.cboProd.Location = new System.Drawing.Point(97, 45);
-            this.cboProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboProd.Margin = new System.Windows.Forms.Padding(2);
             this.cboProd.Name = "cboProd";
             this.cboProd.Size = new System.Drawing.Size(118, 21);
             this.cboProd.TabIndex = 0;
@@ -208,7 +208,7 @@
             this.ClientSize = new System.Drawing.Size(618, 200);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmAdmin";
             this.Text = "FrmAdmin";
             this.Load += new System.EventHandler(this.FrmAdmin_Load);
