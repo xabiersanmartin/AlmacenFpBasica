@@ -34,24 +34,32 @@ namespace CapaPresentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            string mensaje = "";
-            mensaje = Program.Gestor.ModificarPassAdmin(txtPass.Text);
-            if (mensaje !="")
+            if (txtPass.Text == "")
             {
-                MessageBox.Show(mensaje);
+                MessageBox.Show("Ingrese una nueva contraseña");
             }
             else
             {
-                txtPass.Text = "";
+                string mensaje = "";
+                mensaje = Program.Gestor.ModificarPassAdmin(txtPass.Text);
+                if (mensaje != "")
+                {
+                    MessageBox.Show(mensaje);
+                }
+                else
+                {
+                    txtPass.Text = "";
+                }
             }
+
         }
 
         private void FrmAdmin_Load(object sender, EventArgs e)
         {
-            cboProd.Items.Clear();
-            cboProd.Items.AddRange(Program.Gestor.CargarProductos(out mensaje).ToArray());
-            cboProd.DisplayMember = "descripcion";
-
+            cargarCBOs();
+        }
+        private void cargarCBOs()
+        {
             cboCat.Items.Clear();
             cboCat.Items.AddRange(Program.Gestor.CargarCategoria(out mensaje).ToArray());
             cboCat.DisplayMember = "nombreCategoria";
@@ -60,24 +68,20 @@ namespace CapaPresentacion
             cboSubCat.Items.AddRange(Program.Gestor.CargarSubCategoria(out mensaje).ToArray());
             cboSubCat.DisplayMember = "NombreSubCategoria";
         }
-
-        private void btnProd_Click(object sender, EventArgs e)
-        {
-           
-            eliminarP =  cboProd.SelectedItem as Producto;
-            Program.Gestor.EliminarProducto(eliminarP);
-        }
-
         private void btnCat_Click(object sender, EventArgs e)
         {
             eliminarC = cboCat.SelectedItem as Categoria;
             Program.Gestor.EliminarCategoria(eliminarC);
+            cboCat.SelectedItem = null; 
+            cargarCBOs();
         }
 
         private void btnSubCat_Click(object sender, EventArgs e)
         {
             eliminarSC = cboSubCat.SelectedItem as Subcategoria;
             Program.Gestor.EliminarSubCategoria(eliminarSC);
+            cboSubCat.SelectedItem = null;
+            cargarCBOs();
         }
     }
 }
