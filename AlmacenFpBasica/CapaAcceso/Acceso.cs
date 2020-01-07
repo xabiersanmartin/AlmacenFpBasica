@@ -31,7 +31,7 @@ namespace CapaAcceso
                     using (var reader = new StreamReader(Path.GetFullPath(SQLScript))) // TODO Esto no crea la bd, solo el fichero vacío. Observar que no se ejecuta la consulta
                         {
                             var query = "";
-                            var line = "";
+                             var line = "";
                             while ((line = reader.ReadLine()) != null)
                             {
                                 query += line;
